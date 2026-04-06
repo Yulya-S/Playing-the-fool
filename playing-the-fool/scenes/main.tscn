@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv0q76sp2md0m"]
+
+[ext_resource type="Script" uid="uid://5kegi1oxjcxi" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://bt0xcfx2gnpm7" path="res://img/background.png" id="2_0wfyh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7dm0k"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_o5qli")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.255234, 0.483164, 0.362167, 1)
+position = Vector2(575.5, 326)
+scale = Vector2(1, 1.001)
+texture = ExtResource("2_0wfyh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7dm0k")
