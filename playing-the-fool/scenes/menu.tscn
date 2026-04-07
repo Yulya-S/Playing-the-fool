@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7dqg77vrrfws"]
+
+[ext_resource type="Script" uid="uid://c8xl8ftpakgvs" path="res://scripts/menu.gd" id="1_yqeox"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_yqeox")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Animation" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 114.0
+offset_right = 1152.0
+offset_bottom = 209.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "Игра \"Дурак\""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 272.0
+offset_right = 695.0
+offset_bottom = 308.0
+theme_override_font_sizes/font_size = 20
+text = "Начать игру"
+
+[node name="Statistics" type="Button" parent="."]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 327.0
+offset_right = 695.0
+offset_bottom = 363.0
+theme_override_font_sizes/font_size = 20
+text = "Статистика
+"
+
+[node name="Setting" type="Button" parent="."]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 382.0
+offset_right = 695.0
+offset_bottom = 418.0
+theme_override_font_sizes/font_size = 20
+text = "Настройки"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 437.0
+offset_right = 695.0
+offset_bottom = 473.0
+theme_override_font_sizes/font_size = 20
+text = "Выход"
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 615.0
+offset_right = 168.0
+offset_bottom = 638.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+text = "Playing-the-fool - 1.0"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
