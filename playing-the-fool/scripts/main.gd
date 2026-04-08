@@ -1,5 +1,8 @@
 extends Node2D
+# Путь к объекту в сцене
+@onready var Ainimation = $Animation
 # Переменные
+var file: Resource = load("res://scenes/fragments/pack.tscn") # Путь к паку с картачными колодами
 var user_path: String = "user://data/" # Директория хранения данных конфигурации
 var conf_file_path: String = user_path + "conf.json" # Путь к файлу конфигураций
 var stats_file_path: String = user_path + "stats.dat" # Путь к файлу статистики
@@ -21,7 +24,7 @@ func _store_json(file_path: String, data: Variant) -> void:
 	file.close()
 
 # Чтение данных из файла
-func _read_file(file_path: String) -> Variant:
+func read_file(file_path: String) -> Variant:
 	var file = FileAccess.open_encrypted_with_pass(file_path, FileAccess.READ, SECRET_KEY)
 	var json: JSON = JSON.new()
 	if not json.parse(file.get_line()) == OK: return {}
@@ -30,7 +33,7 @@ func _read_file(file_path: String) -> Variant:
 # Проверка наличия созданного файла конфигураций
 func create_config() -> void:
 	if FileAccess.file_exists(conf_file_path):
-		var new: Dictionary = _read_file(conf_file_path)
+		var new: Dictionary = read_file(conf_file_path)
 		if new.keys() == config.keys():
 			config = new
 			return
@@ -41,7 +44,7 @@ func save_config() -> void: _store_json(conf_file_path, config)
 
 # Сохранение данных статистики в файл
 func save_stats(moves: int, winner: bool, cards_count: int) -> void:
-	var data: Array = _read_file(stats_file_path)
+	var data: Array = read_file(stats_file_path)
 	data.append({"moves": moves, "winner": winner, "cards_count": cards_count})
 	_store_json(stats_file_path, data)
 
@@ -52,3 +55,17 @@ func _empty_conf() -> Dictionary: return {"card_pack": 0, "background_color": Co
 func clear_config() -> void:
 	config = _empty_conf()
 	save_config()
+
+# Открытие нового окна
+func close_window(new_window: String) -> void:
+	Global.delete_child(self, get_child(-1))
+	Global.add_obj(self, load("res://scenes/pages/"+new_window+".tscn"))
+
+# Таймер для анимации
+func _on_timer_timeout() -> void:
+	Global.add_obj($Animation, file)
+	$Animation.get_child(-1).position = Vector2(50 + randi() % 1050, 50 + randi() % 550)
+	$Animation.get_child(-1).frame = 4 + randi() % 36
+	$Animation.get_child(-1).modulate.a = 0.
+	$Animation.get_child(-1).get_child(0).play("fall")
+	if $Animation.get_child_count() > 11: $Animation.get_child(1 + randi() % 5).get_child(0).play("hide")

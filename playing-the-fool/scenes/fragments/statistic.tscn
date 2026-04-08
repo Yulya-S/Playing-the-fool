@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bc4m4o1te1nfr"]
+
+[node name="Statistic" type="ColorRect"]
+custom_minimum_size = Vector2(575, 23)
+offset_right = 575.0
+offset_bottom = 23.0
+color = Color(1, 1, 1, 0.666667)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_top = 23.0
+offset_right = 575.0
+offset_bottom = 25.0
+color = Color(0.258824, 0.258824, 0.258824, 0.572549)
+
+[node name="Winner" type="Label" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 150.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Победитель"
+text_overrun_behavior = 3
+
+[node name="Moves" type="Label" parent="."]
+layout_mode = 0
+offset_left = 152.0
+offset_right = 362.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Количество ходов"
+horizontal_alignment = 2
+text_overrun_behavior = 3
+
+[node name="Cards_count" type="Label" parent="."]
+layout_mode = 0
+offset_left = 364.0
+offset_right = 571.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Количество карт"
+horizontal_alignment = 2
+text_overrun_behavior = 3

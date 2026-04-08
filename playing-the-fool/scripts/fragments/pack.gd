@@ -13,6 +13,4 @@ func _on_animation_player_animation_started(anim_name: StringName) -> void:
 
 # Сигнал завершения анимации
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "hide":
-		queue_free()
-		get_parent().remove_child(self)
+	if anim_name == "hide": Global.delete_child(get_parent(), self)

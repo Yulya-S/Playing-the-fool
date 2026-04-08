@@ -13,4 +13,11 @@ position = Vector2(575.5, 326)
 scale = Vector2(1, 1.001)
 texture = ExtResource("2_0wfyh")
 
+[node name="Animation" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="Animation"]
+autostart = true
+
 [node name="Menu" parent="." instance=ExtResource("3_sugp2")]
+
+[connection signal="timeout" from="Animation/Timer" to="." method="_on_timer_timeout"]
