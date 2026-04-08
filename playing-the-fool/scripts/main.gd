@@ -8,32 +8,24 @@ var SECRET_KEY: String = "yunabi_save_key86549" # Ключь для шифров
 
 # Стартовое создание директорий
 func _ready() -> void:
-	if not DirAccess.dir_exists_absolute(user_path): DirAccess.make_dir_absolute(user_path)
-	create_config()
 	$Sprite2D.modulate = config.background_color
+	if not DirAccess.dir_exists_absolute(user_path): DirAccess.make_dir_absolute(user_path)
+	if not FileAccess.file_exists(stats_file_path): _store_json(stats_file_path, [])
+	create_config()
 
 # Сохранение данных в файл
-func _store_json(file_path: String, data: Dictionary) -> void:
+func _store_json(file_path: String, data: Variant) -> void:
 	var file = FileAccess.open_encrypted_with_pass(file_path, FileAccess.WRITE, SECRET_KEY)
 	var json_string = JSON.stringify(data)
 	file.store_string(json_string)
 	file.close()
 
 # Чтение данных из файла
-func _read_file(file_path: String) -> Dictionary:
+func _read_file(file_path: String) -> Variant:
 	var file = FileAccess.open_encrypted_with_pass(file_path, FileAccess.READ, SECRET_KEY)
 	var json: JSON = JSON.new()
 	if not json.parse(file.get_line()) == OK: return {}
 	return json.data
-	
-	
-	#var json = JSON.new()
-	#json = json.parse(file.get_as_text())
-	#file.close()
-	#if not json == OK: return {}
-	#print(json)
-	#return {}
-	#return json.get_data()
 
 # Проверка наличия созданного файла конфигураций
 func create_config() -> void:
@@ -46,6 +38,12 @@ func create_config() -> void:
 
 # Сохранение данных конфигураций в файл
 func save_config() -> void: _store_json(conf_file_path, config)
+
+# Сохранение данных статистики в файл
+func save_stats(moves: int, winner: bool, cards_count: int) -> void:
+	var data: Array = _read_file(stats_file_path)
+	data.append({"moves": moves, "winner": winner, "cards_count": cards_count})
+	_store_json(stats_file_path, data)
 
 # Пустой словарь конфигурации
 func _empty_conf() -> Dictionary: return {"card_pack": 0, "background_color": Color.DARK_GREEN}
