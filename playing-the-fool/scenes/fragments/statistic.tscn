@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bc4m4o1te1nfr"]
 
 [node name="Statistic" type="ColorRect"]
-custom_minimum_size = Vector2(575, 23)
+custom_minimum_size = Vector2(576, 23)
 offset_right = 575.0
 offset_bottom = 23.0
 color = Color(1, 1, 1, 0.666667)

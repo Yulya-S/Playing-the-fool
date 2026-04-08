@@ -6,7 +6,9 @@ var file: Resource = load("res://scenes/fragments/statistic.tscn") # Путь о
 var lines: Array = [] # Значения строк статистики
 
 # Получения значений строк для создания статистики
-func _ready() -> void: lines = get_parent().read_file(get_parent().stats_file_path)
+func _ready() -> void:
+	Global.add_obj(LinesContainer, file)
+	lines = get_parent().read_file(get_parent().stats_file_path)
 
 # Постепенное создание строк статистики
 func _process(_delta: float) -> void:
