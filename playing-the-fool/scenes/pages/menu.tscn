@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7dqg77vrrfws"]
+[gd_scene load_steps=3 format=3 uid="uid://c7dqg77vrrfws"]
 
-[ext_resource type="Script" uid="uid://c8xl8ftpakgvs" path="res://scripts/menu.gd" id="1_yqeox"]
+[ext_resource type="Script" uid="uid://c8xl8ftpakgvs" path="res://scripts/pages/menu.gd" id="1_yqeox"]
+[ext_resource type="PackedScene" uid="uid://c5cb4cuv54ci5" path="res://scenes/fragments/animation.tscn" id="2_ohr8o"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -9,10 +10,7 @@ offset_right = 1152.0
 offset_bottom = 648.0
 script = ExtResource("1_yqeox")
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
-[node name="Animation" type="Node2D" parent="."]
+[node name="Animation" parent="." instance=ExtResource("2_ohr8o")]
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -74,5 +72,3 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
 text = "Playing-the-fool - 1.0"
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
