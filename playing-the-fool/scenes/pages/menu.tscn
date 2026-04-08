@@ -41,7 +41,7 @@ theme_override_font_sizes/font_size = 20
 text = "Статистика
 "
 
-[node name="Setting" type="Button" parent="."]
+[node name="Settings" type="Button" parent="."]
 layout_mode = 0
 offset_left = 457.0
 offset_top = 382.0
@@ -70,5 +70,6 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
 text = "Playing-the-fool - 1.0"
 
-[connection signal="button_down" from="Statistics" to="." method="_on_statistics_button_down"]
+[connection signal="button_down" from="Statistics" to="." method="_on_window_button_down" binds= ["statistics"]]
+[connection signal="button_down" from="Settings" to="." method="_on_window_button_down" binds= ["settings"]]
 [connection signal="button_down" from="Exit" to="." method="_on_exit_button_down"]
