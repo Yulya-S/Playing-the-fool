@@ -45,11 +45,11 @@ vertical_alignment = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 5.0
-offset_right = 138.0
-offset_bottom = 133.0
-scale = Vector2(0.5, 0.5)
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 148.0
+offset_bottom = 148.0
+scale = Vector2(0.6, 0.6)
 icon = ExtResource("3_qr3t7")
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

@@ -7,6 +7,7 @@ offset_bottom = 23.0
 color = Color(1, 1, 1, 0.666667)
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_top = 23.0
 offset_right = 575.0
 offset_bottom = 25.0

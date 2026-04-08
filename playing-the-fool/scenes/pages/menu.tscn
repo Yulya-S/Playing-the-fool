@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7dqg77vrrfws"]
+[gd_scene load_steps=5 format=3 uid="uid://c7dqg77vrrfws"]
 
 [ext_resource type="Script" uid="uid://c8xl8ftpakgvs" path="res://scripts/pages/menu.gd" id="1_yqeox"]
+[ext_resource type="Texture2D" uid="uid://ds7eoua3f5jjk" path="res://img/icons/start.png" id="2_7pm6w"]
+[ext_resource type="Texture2D" uid="uid://d4e74wjn8hhqh" path="res://img/icons/gear.png" id="2_ohr8o"]
+[ext_resource type="Texture2D" uid="uid://wht0kkbpyd7h" path="res://img/icons/statistic.png" id="3_aur8p"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -24,40 +27,33 @@ vertical_alignment = 1
 
 [node name="Play" type="Button" parent="."]
 layout_mode = 0
-offset_left = 457.0
-offset_top = 272.0
-offset_right = 695.0
-offset_bottom = 308.0
+offset_left = 501.4
+offset_top = 314.0
+offset_right = 629.4
+offset_bottom = 442.0
+scale = Vector2(0.9, 0.9)
 theme_override_font_sizes/font_size = 20
-text = "Начать игру"
+icon = ExtResource("2_7pm6w")
 
 [node name="Statistics" type="Button" parent="."]
 layout_mode = 0
-offset_left = 457.0
-offset_top = 327.0
-offset_right = 695.0
-offset_bottom = 363.0
+offset_left = 378.6
+offset_top = 320.0
+offset_right = 506.6
+offset_bottom = 448.0
+scale = Vector2(0.8, 0.8)
 theme_override_font_sizes/font_size = 20
-text = "Статистика
-"
+icon = ExtResource("3_aur8p")
 
 [node name="Settings" type="Button" parent="."]
 layout_mode = 0
-offset_left = 457.0
-offset_top = 382.0
-offset_right = 695.0
-offset_bottom = 418.0
+offset_left = 637.0
+offset_top = 320.4
+offset_right = 765.0
+offset_bottom = 448.4
+scale = Vector2(0.8, 0.8)
 theme_override_font_sizes/font_size = 20
-text = "Настройки"
-
-[node name="Exit" type="Button" parent="."]
-layout_mode = 0
-offset_left = 457.0
-offset_top = 437.0
-offset_right = 695.0
-offset_bottom = 473.0
-theme_override_font_sizes/font_size = 20
-text = "Выход"
+icon = ExtResource("2_ohr8o")
 
 [node name="Version" type="Label" parent="."]
 layout_mode = 0
@@ -72,4 +68,3 @@ text = "Playing-the-fool - 1.0"
 
 [connection signal="button_down" from="Statistics" to="." method="_on_window_button_down" binds= ["statistics"]]
 [connection signal="button_down" from="Settings" to="." method="_on_window_button_down" binds= ["settings"]]
-[connection signal="button_down" from="Exit" to="." method="_on_exit_button_down"]
