@@ -3,7 +3,10 @@ extends AnimatedSprite2D
 var rotate_data: Array = [false, 0] # Данные для поворота карты
 
 # Применение карточного пака
-func _ready() -> void: animation = str(int(Global.config.card_pack))
+func _ready() -> void:
+	animation = str(int(Global.config.card_pack))
+	var frame_size: Vector2 = sprite_frames.get_frame_texture(animation, frame).get_size()
+	scale = Vector2(frame_size.x / 246., frame_size.y / 344.)
 
 # Процесс анимации
 func _process(delta: float) -> void:
