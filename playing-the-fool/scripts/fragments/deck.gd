@@ -8,7 +8,7 @@ func _ready() -> void:
 	while len(card_array) > 0:
 		Global.add_obj(Cards, card)
 		Cards.get_child(-1).set_value(card_array.pop_at(randi() % len(card_array)))
-		Cards.get_child(-1).position.x += (36 - len(card_array)) * 1.
-		Cards.get_child(-1).position.y -= (36 - len(card_array)) * 1.
+		Cards.get_child(-1).position.x += (36 - len(card_array)) * 0.5
+		Cards.get_child(-1).position.y -= (36 - len(card_array)) * 0.5
 	$Pack.frame = (Cards.get_child(-1).get_child(0).frame) % 4
 	$Pack.hide_shadow()

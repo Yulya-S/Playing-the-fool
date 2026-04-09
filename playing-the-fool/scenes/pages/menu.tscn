@@ -27,9 +27,9 @@ vertical_alignment = 1
 
 [node name="Play" type="Button" parent="."]
 layout_mode = 0
-offset_left = 501.4
+offset_left = 518.4
 offset_top = 314.0
-offset_right = 629.4
+offset_right = 646.4
 offset_bottom = 442.0
 scale = Vector2(0.9, 0.9)
 theme_override_font_sizes/font_size = 20
@@ -37,9 +37,9 @@ icon = ExtResource("2_7pm6w")
 
 [node name="Statistics" type="Button" parent="."]
 layout_mode = 0
-offset_left = 378.6
+offset_left = 375.6
 offset_top = 320.0
-offset_right = 506.6
+offset_right = 503.6
 offset_bottom = 448.0
 scale = Vector2(0.8, 0.8)
 theme_override_font_sizes/font_size = 20
@@ -47,10 +47,10 @@ icon = ExtResource("3_aur8p")
 
 [node name="Settings" type="Button" parent="."]
 layout_mode = 0
-offset_left = 637.0
-offset_top = 320.4
-offset_right = 765.0
-offset_bottom = 448.4
+offset_left = 674.0
+offset_top = 320.0
+offset_right = 802.0
+offset_bottom = 448.0
 scale = Vector2(0.8, 0.8)
 theme_override_font_sizes/font_size = 20
 icon = ExtResource("2_ohr8o")
@@ -58,12 +58,13 @@ icon = ExtResource("2_ohr8o")
 [node name="Version" type="Label" parent="."]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 615.0
-offset_right = 168.0
+offset_top = 610.0
+offset_right = 208.0
 offset_bottom = 638.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
 text = "Playing-the-fool - 1.0"
 
 [connection signal="button_down" from="Play" to="." method="_on_play_button_down"]

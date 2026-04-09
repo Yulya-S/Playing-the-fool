@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cskwp4r1g2e3m" path="res://scenes/fragments/pack.tscn" id="1_iriu1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iriu1"]
-size = Vector2(124, 172)
+size = Vector2(124, 187)
 
 [node name="Card" type="Area2D"]
 script = ExtResource("1_0bgfi")
@@ -12,4 +12,5 @@ script = ExtResource("1_0bgfi")
 [node name="Pack" parent="." instance=ExtResource("1_iriu1")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_iriu1")
