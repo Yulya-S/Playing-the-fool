@@ -2,6 +2,10 @@ extends AnimatedSprite2D
 # Переменная
 var rotate_data: Array = [false, 0] # Данные для поворота карты
 
+# Применение карточного пака
+func _ready() -> void: animation = str(int(Global.config.card_pack))
+
+# Процесс анимации
 func _process(delta: float) -> void:
 	if rotate_data[0]:
 		rotation = lerp_angle(rotation, deg_to_rad(rotate_data[1]), 1.2 * delta)

@@ -1,0 +1,97 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj1vn7i7uul52"]
+
+[ext_resource type="Script" uid="uid://c0eibqlkj6fcg" path="res://scripts/pages/settings.gd" id="1_5pmsx"]
+[ext_resource type="Texture2D" uid="uid://biqd5kwm04uh1" path="res://img/icons/right.png" id="2_fnqb4"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_5pmsx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.34902)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 288.0
+offset_right = 864.0
+offset_bottom = 69.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "Настройки"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 150.0
+offset_right = 864.0
+offset_bottom = 186.0
+theme_override_font_sizes/font_size = 20
+selected = 0
+item_count = 2
+popup/item_0/text = "Фэнтези калода"
+popup/item_0/id = 0
+popup/item_1/text = "v1"
+popup/item_1/id = 1
+
+[node name="Label" type="Label" parent="OptionButton"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -28.0
+offset_right = 576.0
+theme_override_font_sizes/font_size = 20
+text = "Тип калоды"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+offset_left = 430.0
+offset_top = 223.0
+offset_right = 710.0
+offset_bottom = 251.0
+theme_override_font_sizes/font_size = 20
+text = "Цвет фона"
+
+[node name="ColorPicker" type="ColorPicker" parent="."]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 260.0
+offset_right = 714.0
+offset_bottom = 559.0
+edit_alpha = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+presets_visible = false
+
+[node name="ResetColor" type="Button" parent="."]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 566.0
+offset_right = 710.0
+offset_bottom = 602.0
+theme_override_font_sizes/font_size = 20
+text = "Сбросить цвет"
+text_overrun_behavior = 3
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 148.0
+offset_bottom = 148.0
+scale = Vector2(0.6, 0.6)
+icon = ExtResource("2_fnqb4")
+
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="color_changed" from="ColorPicker" to="." method="_on_color_picker_color_changed"]
+[connection signal="button_down" from="ResetColor" to="." method="_on_reset_color_button_down"]
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
