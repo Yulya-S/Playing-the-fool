@@ -679,5 +679,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_5xwgq")
 }
 
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-125, 174, 125, 174, 125, -174, -125, -174)
+closed = true
+width = 4.0
+default_color = Color(0.118581, 0.118581, 0.118581, 0.380392)
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]

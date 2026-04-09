@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcvyd5krlu5un"]
+
+[ext_resource type="Script" uid="uid://cifthau54kt3b" path="res://scripts/fragments/card.gd" id="1_0bgfi"]
+[ext_resource type="PackedScene" uid="uid://cskwp4r1g2e3m" path="res://scenes/fragments/pack.tscn" id="1_iriu1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iriu1"]
+size = Vector2(245, 344)
+
+[node name="Card" type="Area2D"]
+script = ExtResource("1_0bgfi")
+
+[node name="Pack" parent="." instance=ExtResource("1_iriu1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_iriu1")
