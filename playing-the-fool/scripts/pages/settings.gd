@@ -3,7 +3,9 @@ extends Control
 @onready var Picker = $ColorPicker
 
 # Применение цвета
-func _ready() -> void: Picker.color = Color("#"+Global.config.background_color)
+func _ready() -> void:
+	Picker.color = Color("#"+Global.config.background_color)
+	$OptionButton.selected = Global.config.card_pack
 
 # Изменение цвета фона
 func _on_color_picker_color_changed(color: Color) -> void:
