@@ -4,15 +4,11 @@ var file: Resource = load("res://scenes/fragments/pack.tscn") # Путь к па
 
 # Стартовое создание директорий
 func _ready() -> void:
+	Global.main = self
 	if not DirAccess.dir_exists_absolute(Global.user_path): DirAccess.make_dir_absolute(Global.user_path)
 	if not FileAccess.file_exists(Global.stats_file_path): Global.store_json(Global.stats_file_path, [])
 	Global.create_config()
 	$Sprite2D.modulate = Color("#"+Global.config.background_color)
-
-# Открытие нового окна
-func close_window(new_window: String) -> void:
-	Global.delete_child(self, get_child(-1))
-	Global.add_obj(self, load("res://scenes/pages/"+new_window+".tscn"))
 
 # Таймер для анимации
 func _on_timer_timeout() -> void:

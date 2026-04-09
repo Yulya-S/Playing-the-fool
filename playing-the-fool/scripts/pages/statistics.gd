@@ -23,4 +23,4 @@ func set_value(value: Dictionary) -> void:
 	LinesContainer.get_child(-1).get_child(1).set_text("_USER" + LinesContainer.get_child(-1).get_child(1).text)
 
 # Закрытие окна статистики
-func _on_button_button_down() -> void: get_parent().close_window("menu")
+func _on_button_button_down() -> void: Global.close_window("menu")

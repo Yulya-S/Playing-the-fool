@@ -9,7 +9,7 @@ func _ready() -> void:
 
 # Изменение цвета фона
 func _on_color_picker_color_changed(color: Color) -> void:
-	get_parent().get_child(0).modulate = color
+	Global.main.get_child(0).modulate = color
 	Global.config.background_color = color.to_html()
 	Global.save_config()
 
@@ -24,4 +24,4 @@ func _on_option_button_item_selected(index: int) -> void:
 	Global.save_config()
 
 # Закрытие окна статистики
-func _on_button_button_down() -> void: get_parent().close_window("menu")
+func _on_button_button_down() -> void: Global.close_window("menu")
