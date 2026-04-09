@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://deqkmpy07elvv"]
+
+[ext_resource type="Script" uid="uid://b3qqbfont2jp2" path="res://scripts/fragments/deck.gd" id="1_444pa"]
+[ext_resource type="PackedScene" uid="uid://cskwp4r1g2e3m" path="res://scenes/fragments/pack.tscn" id="1_n3goq"]
+
+[node name="Deck" type="Node2D"]
+script = ExtResource("1_444pa")
+
+[node name="Pack" parent="." instance=ExtResource("1_n3goq")]
+
+[node name="Cards" type="Node2D" parent="."]

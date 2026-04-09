@@ -20,5 +20,5 @@ func _on_timer_timeout() -> void:
 	$Animation.get_child(-1).position = Vector2(50 + randi() % 1050, 50 + randi() % 550)
 	$Animation.get_child(-1).frame = 4 + randi() % 36
 	$Animation.get_child(-1).modulate.a = 0.
-	$Animation.get_child(-1).get_child(0).play("fall")
-	if $Animation.get_child_count() > 11: $Animation.get_child(1 + randi() % 5).get_child(0).play("hide")
+	$Animation.get_child(-1).get_child(-1).play("fall")
+	if $Animation.get_child_count() > 11: $Animation.get_child(1 + randi() % 5).get_child(-1).play("hide")

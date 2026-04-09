@@ -11,6 +11,9 @@ func _process(delta: float) -> void:
 		rotation = lerp_angle(rotation, deg_to_rad(rotate_data[1]), 1.2 * delta)
 		if abs(fposmod(rotation_degrees, 360) - rotate_data[1]) < 1: rotate_data[0] = false
 
+# Скрытие тени карыт
+func hide_shadow() -> void: $Line2D.visible = false
+
 # Старт анимации поворота
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
 	if anim_name == "fall": rotate_data = [true, randi() % 360]
