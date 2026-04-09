@@ -8,7 +8,7 @@ var lines: Array = [] # Значения строк статистики
 # Получения значений строк для создания статистики
 func _ready() -> void:
 	Global.add_obj(LinesContainer, file)
-	lines = get_parent().read_file(get_parent().stats_file_path)
+	lines = Global.read_file(Global.stats_file_path)
 
 # Постепенное создание строк статистики
 func _process(_delta: float) -> void:
