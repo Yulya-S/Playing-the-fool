@@ -10,6 +10,7 @@ size = Vector2(124, 187)
 script = ExtResource("1_0bgfi")
 
 [node name="Pack" parent="." instance=ExtResource("1_iriu1")]
+scale = Vector2(0.4, 0.4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)

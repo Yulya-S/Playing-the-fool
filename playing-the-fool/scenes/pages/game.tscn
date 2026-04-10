@@ -89,14 +89,14 @@ scale = Vector2(0.6, 0.6)
 icon = ExtResource("3_773x0")
 
 [node name="Deck" type="Node2D" parent="."]
-position = Vector2(81, 117)
+position = Vector2(69, 102)
 script = ExtResource("1_773x0")
 
 [node name="Label" type="Label" parent="Deck"]
-offset_left = 16.0
-offset_top = -86.0
-offset_right = 106.0
-offset_bottom = 86.0
+offset_left = 26.0
+offset_top = -69.0
+offset_right = 118.0
+offset_bottom = 69.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 20
@@ -112,6 +112,7 @@ position = Vector2(180, 0)
 position = Vector2(179, 0)
 
 [node name="FirstMoveDetermination" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
