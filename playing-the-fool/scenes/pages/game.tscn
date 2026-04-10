@@ -1,9 +1,76 @@
-[gd_scene load_steps=5 format=3 uid="uid://yk6gbargmxh5"]
+[gd_scene load_steps=11 format=3 uid="uid://yk6gbargmxh5"]
 
 [ext_resource type="PackedScene" uid="uid://cskwp4r1g2e3m" path="res://scenes/fragments/pack.tscn" id="1_2x851"]
 [ext_resource type="Script" uid="uid://b3qqbfont2jp2" path="res://scripts/fragments/deck.gd" id="1_773x0"]
 [ext_resource type="Script" uid="uid://ij3ltfidj7l8" path="res://scripts/pages/game.gd" id="1_qlvyt"]
 [ext_resource type="Texture2D" uid="uid://biqd5kwm04uh1" path="res://img/icons/right.png" id="3_773x0"]
+[ext_resource type="Texture2D" uid="uid://wht0kkbpyd7h" path="res://img/icons/statistic.png" id="5_ut5xk"]
+[ext_resource type="Script" uid="uid://cv3y2qsx48bj7" path="res://scripts/fragments/first_move_determination.gd" id="6_ut5xk"]
+
+[sub_resource type="Animation" id="Animation_kt16h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jl74o"]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ut5xk"]
+resource_name = "show"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jl74o"]
+_data = {
+&"RESET": SubResource("Animation_kt16h"),
+&"hide": SubResource("Animation_jl74o"),
+&"show": SubResource("Animation_ut5xk")
+}
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -44,4 +111,62 @@ position = Vector2(180, 0)
 [node name="Cards" type="Node2D" parent="Deck"]
 position = Vector2(179, 0)
 
+[node name="FirstMoveDetermination" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.34902)
+
+[node name="Line2D" type="Line2D" parent="FirstMoveDetermination"]
+points = PackedVector2Array(0, 324, 1152, 324)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="FirstMoveDetermination"]
+layout_mode = 0
+offset_top = 142.0
+offset_right = 1152.0
+offset_bottom = 211.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "Определяем порядок хода"
+horizontal_alignment = 1
+
+[node name="Arrow" type="Sprite2D" parent="FirstMoveDetermination"]
+position = Vector2(576, 324)
+texture = ExtResource("5_ut5xk")
+script = ExtResource("6_ut5xk")
+
+[node name="Result" type="Label" parent="FirstMoveDetermination"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_top = 439.0
+offset_right = 1152.0
+offset_bottom = 508.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.994273, 0, 0.201686, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "Определяем порядок хода"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="FirstMoveDetermination/Result"]
+layout_mode = 0
+offset_top = -55.0
+offset_right = 1152.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 40
+text = "Первым ходит"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FirstMoveDetermination/Result"]
+libraries = {
+&"": SubResource("AnimationLibrary_jl74o")
+}
+
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="animation_finished" from="FirstMoveDetermination/Result/AnimationPlayer" to="FirstMoveDetermination/Arrow" method="_on_animation_player_animation_finished"]
