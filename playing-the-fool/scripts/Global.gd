@@ -63,3 +63,5 @@ func add_obj(parent: Node, path: Resource) -> void:
 func close_window(new_window: String) -> void:
 	delete_child(main, main.get_child(-1))
 	add_obj(main, load("res://scenes/pages/"+new_window+".tscn"))
+	main.get_child(1).visible = not (new_window == "game")
+	main.get_child(1).get_child(0).set_paused(new_window == "game")
