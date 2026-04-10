@@ -12,7 +12,9 @@ func _process(delta: float) -> void:
 		if abs(fposmod(rotation_degrees, 360) - rotate_data[1]) < 1: rotate_data[0] = false
 
 # Скрытие тени карыт
-func hide_shadow() -> void: $Line2D.visible = false
+func hide_shadow(idx: int) -> void:
+	$Line2D.visible = false
+	frame = idx
 
 # Старт анимации поворота
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
