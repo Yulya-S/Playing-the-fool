@@ -5,12 +5,11 @@ var suit: int = 0 # Масть
 var price: int = 0 # Цена
 var trump: bool = false # Метка козырности
 
-var new_pos: Array = [false, Vector2(0, 0)]
+var new_pos: Vector2 = Vector2(0, 0)
 
 func _process(delta: float) -> void:
-	if new_pos[0]:
-		position = position.move_toward(new_pos[1], 1000. * delta)
-		if new_pos[1] == position: new_pos [0] = false
+	if new_pos != position  and get_parent() is Hand:
+		position = position.move_toward(new_pos, (1000.0 if new_pos.y != position.y else 500.0) * delta)
 
 # Применение индекса
 func set_value(idx: int) -> void:
@@ -29,4 +28,4 @@ func show_card() -> void: $Pack.frame = (price - 5) * 4 + suit
 func hide_card() -> void: $Pack.frame = 40
 
 # Перемещение карты
-func transfer(pos: Vector2) -> void: new_pos = [true, pos]
+func transfer(height: float) -> void: new_pos = Vector2(position.x, height)

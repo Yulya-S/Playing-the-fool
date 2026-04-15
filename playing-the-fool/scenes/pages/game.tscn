@@ -118,13 +118,16 @@ autostart = true
 
 [node name="Computer" type="Node2D" parent="."]
 script = ExtResource("5_kt16h")
-pos = Vector2(1000, 100)
+start_pos = 500.0
+weight = 600.0
+show_card = false
 
 [node name="Hand" type="Node2D" parent="."]
 script = ExtResource("5_kt16h")
-pos = Vector2(1000, 600)
+height = 400.0
 
 [node name="FirstMoveDetermination" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0

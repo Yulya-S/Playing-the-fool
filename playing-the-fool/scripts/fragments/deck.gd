@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func dealing_cards(user: Hand) -> void:
 	Cards.get_child(-1).reparent(user)
-	user.get_child(-1).transfer(user.pos)
+	user.add_card()
 
 func _on_timer_timeout() -> void:
 	dealing_cards($"../Hand" if user_idx else $"../Computer")
