@@ -5,6 +5,13 @@ var suit: int = 0 # Масть
 var price: int = 0 # Цена
 var trump: bool = false # Метка козырности
 
+var new_pos: Array = [false, Vector2(0, 0)]
+
+func _process(delta: float) -> void:
+	if new_pos[0]:
+		position = position.move_toward(new_pos[1], 1000. * delta)
+		if new_pos[1] == position: new_pos [0] = false
+
 # Применение индекса
 func set_value(idx: int) -> void:
 	suit = (3 + idx) % 4
@@ -20,3 +27,6 @@ func set_value(idx: int) -> void:
 func show_card() -> void: $Pack.frame = (price - 5) * 4 + suit
 
 func hide_card() -> void: $Pack.frame = 40
+
+# Перемещение карты
+func transfer(pos: Vector2) -> void: new_pos = [true, pos]

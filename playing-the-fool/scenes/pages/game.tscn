@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://yk6gbargmxh5"]
+[gd_scene load_steps=12 format=3 uid="uid://yk6gbargmxh5"]
 
 [ext_resource type="PackedScene" uid="uid://cskwp4r1g2e3m" path="res://scenes/fragments/pack.tscn" id="1_2x851"]
 [ext_resource type="Script" uid="uid://b3qqbfont2jp2" path="res://scripts/fragments/deck.gd" id="1_773x0"]
 [ext_resource type="Script" uid="uid://ij3ltfidj7l8" path="res://scripts/pages/game.gd" id="1_qlvyt"]
 [ext_resource type="Texture2D" uid="uid://biqd5kwm04uh1" path="res://img/icons/right.png" id="3_773x0"]
+[ext_resource type="Script" uid="uid://c2th33oclx47y" path="res://scripts/fragments/Hand.gd" id="5_kt16h"]
 [ext_resource type="Texture2D" uid="uid://wht0kkbpyd7h" path="res://img/icons/statistic.png" id="5_ut5xk"]
 [ext_resource type="Script" uid="uid://cv3y2qsx48bj7" path="res://scripts/fragments/first_move_determination.gd" id="6_ut5xk"]
 
@@ -111,8 +112,19 @@ position = Vector2(180, 0)
 [node name="Cards" type="Node2D" parent="Deck"]
 position = Vector2(179, 0)
 
+[node name="Timer" type="Timer" parent="Deck"]
+wait_time = 0.1
+autostart = true
+
+[node name="Computer" type="Node2D" parent="."]
+script = ExtResource("5_kt16h")
+pos = Vector2(1000, 100)
+
+[node name="Hand" type="Node2D" parent="."]
+script = ExtResource("5_kt16h")
+pos = Vector2(1000, 600)
+
 [node name="FirstMoveDetermination" type="ColorRect" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -170,4 +182,5 @@ libraries = {
 }
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="timeout" from="Deck/Timer" to="Deck" method="_on_timer_timeout"]
 [connection signal="animation_finished" from="FirstMoveDetermination/Result/AnimationPlayer" to="FirstMoveDetermination/Arrow" method="_on_animation_player_animation_finished"]
