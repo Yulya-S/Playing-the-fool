@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://cskwp4r1g2e3m"]
+[gd_scene load_steps=92 format=3 uid="uid://cskwp4r1g2e3m"]
 
 [ext_resource type="Texture2D" uid="uid://caejajwp82j7p" path="res://img/card_packs/Карты Фентези.png" id="1_6dok6"]
 [ext_resource type="Texture2D" uid="uid://boy08ad6stka4" path="res://img/card_packs/Карты v1.png" id="2_otq1e"]
@@ -662,10 +662,27 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_6dok6"]
+resource_name = "growth"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.4, 0.4), Vector2(0.6, 0.6)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5xwgq"]
 _data = {
 &"RESET": SubResource("Animation_5xwgq"),
 &"fall": SubResource("Animation_wo5bd"),
+&"growth": SubResource("Animation_6dok6"),
 &"hide": SubResource("Animation_17ntd")
 }
 

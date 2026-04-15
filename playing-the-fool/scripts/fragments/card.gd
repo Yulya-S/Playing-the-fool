@@ -29,3 +29,6 @@ func hide_card() -> void: $Pack.frame = 40
 
 # Перемещение карты
 func transfer(height: float) -> void: new_pos = Vector2(position.x, height)
+
+# Запуск анимации
+func start_anim(anim_name: String) -> void: $Pack/AnimationPlayer.play(anim_name)
