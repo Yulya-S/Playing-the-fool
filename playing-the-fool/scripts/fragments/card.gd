@@ -8,7 +8,7 @@ var trump: bool = false # Метка козырности
 var new_pos: Vector2 = Vector2(0, 0)
 
 func _process(delta: float) -> void:
-	if new_pos != position  and get_parent() is Hand:
+	if new_pos != position and get_parent() is Hand:
 		position = position.move_toward(new_pos, (1000.0 if new_pos.y != position.y else 500.0) * delta)
 
 # Применение индекса
