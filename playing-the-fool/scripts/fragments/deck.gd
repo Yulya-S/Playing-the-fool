@@ -1,7 +1,7 @@
 extends Node2D
 @onready var Cards = $Cards
 # Переменная
-var card: Resource = load("res://scenes/fragments/card.tscn")
+var card: Resource = load("res://scenes/fragments/pack.tscn")
 var user_idx: bool = true
 
 func _ready() -> void:
