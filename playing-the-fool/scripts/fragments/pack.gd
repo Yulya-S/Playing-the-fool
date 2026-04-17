@@ -10,7 +10,7 @@ var new_pos: Vector2 = Vector2(0, 0)
 # Применение индекса
 func set_value(idx: int) -> void:
 	suit = (3 + idx) % 4
-	price = (3 + idx) / 4 + 5
+	price = int((3. + idx) / 4. + 5.)
 	hide_card()
 	if get_parent().get_child_count() == 1:
 		rotation_degrees = 90
@@ -29,11 +29,9 @@ func transfer(height: float) -> void: new_pos = Vector2(position.x, height)
 # Запуск анимации
 func start_anim(anim_name: String) -> void: $AnimationPlayer.play(anim_name)
 
-func _on_mouse_entered() -> void:
-	if get_parent().name == "Hand": Player.hovered_cards.append(get_index())
+func _on_mouse_entered() -> void: if get_parent().name == "Hand": get_parent().hovered_cards.append(get_index())
 
-func _on_mouse_exited() -> void:
-	if get_parent().name == "Hand": Player.hovered_cards.pop_at(Player.hovered_cards.find(get_index()))
+func _on_mouse_exited() -> void: if get_parent().name == "Hand": get_parent().unhovered_cards.append(get_index())
 
 
 # Переменная

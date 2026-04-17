@@ -21,9 +21,9 @@ func dealing_cards(user: Hand) -> void:
 func _on_timer_timeout() -> void:
 	dealing_cards($"../Hand" if user_idx else $"../Computer")
 	user_idx = not user_idx
-	if $"../Computer".get_child_count() >= 6: user_idx = true
-	if $"../Hand".get_child_count() >= 6: user_idx = false
-	if ($"../Hand".get_child_count() >= 6 and $"../Computer".get_child_count() >= 6) or \
+	if $"../Computer".get_child_count() >= 18: user_idx = true
+	if $"../Hand".get_child_count() >= 18: user_idx = false
+	if ($"../Hand".get_child_count() >= 18 and $"../Computer".get_child_count() >= 18) or \
 		Cards.get_child_count() == 0:
 			$Timer.stop()
 	$Label.set_text(str(Cards.get_child_count()))
