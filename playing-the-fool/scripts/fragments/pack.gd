@@ -31,7 +31,9 @@ func start_anim(anim_name: String) -> void: $AnimationPlayer.play(anim_name)
 
 func _on_mouse_entered() -> void: if get_parent().name == "Hand": get_parent().hovered_cards.append(get_index())
 
-func _on_mouse_exited() -> void: if get_parent().name == "Hand": get_parent().unhovered_cards.append(get_index())
+func _on_mouse_exited() -> void:
+	if get_parent().name == "Hand" and get_index() in get_parent().hovered_cards:
+		get_parent().unhovered_cards.append(get_index())
 
 
 # Переменная
