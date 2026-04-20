@@ -29,12 +29,13 @@ func transfer(height: float) -> void: new_pos = Vector2(position.x, height)
 # Запуск анимации
 func start_anim(anim_name: String) -> void: $AnimationPlayer.play(anim_name)
 
-func _on_mouse_entered() -> void: if get_parent().name == "Hand": get_parent().hovered_cards.append(get_index())
+func _on_mouse_entered() -> void:
+	if get_parent().name == "Hand" and position.y >= get_parent().height:
+		get_parent().hovered_cards.append(get_index())
 
 func _on_mouse_exited() -> void:
 	if get_parent().name == "Hand" and get_index() in get_parent().hovered_cards:
 		get_parent().unhovered_cards.append(get_index())
-
 
 # Переменная
 var rotate_data: Array = [false, 0] # Данные для поворота карты
