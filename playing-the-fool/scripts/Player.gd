@@ -1,5 +1,5 @@
 extends Hand
-@onready var GameZone = $"../GameZone"
+@onready var GameZone = $"../Table"
 var hovered_cards: Array = []
 var unhovered_cards: Array = []
 var clicked: int = -1

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b3qqbfont2jp2" path="res://scripts/fragments/deck.gd" id="1_773x0"]
 [ext_resource type="Script" uid="uid://ij3ltfidj7l8" path="res://scripts/pages/game.gd" id="1_qlvyt"]
 [ext_resource type="Texture2D" uid="uid://biqd5kwm04uh1" path="res://img/icons/right.png" id="3_773x0"]
-[ext_resource type="Script" uid="uid://b8ge4qi36pnxf" path="res://scripts/fragments/game_zone.gd" id="5_hm6wi"]
+[ext_resource type="Script" uid="uid://b8ge4qi36pnxf" path="res://scripts/fragments/table.gd" id="5_hm6wi"]
 [ext_resource type="Script" uid="uid://c2th33oclx47y" path="res://scripts/fragments/Hand.gd" id="5_kt16h"]
 [ext_resource type="Texture2D" uid="uid://wht0kkbpyd7h" path="res://img/icons/statistic.png" id="5_ut5xk"]
 [ext_resource type="Script" uid="uid://lfe3evc0ov1u" path="res://scripts/Player.gd" id="6_jl74o"]
@@ -118,7 +118,7 @@ position = Vector2(179, 0)
 wait_time = 0.1
 autostart = true
 
-[node name="GameZone" type="Control" parent="."]
+[node name="Table" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 40.0
 offset_top = 183.0
