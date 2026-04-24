@@ -1,6 +1,13 @@
 extends Node
-# Главная сцена
-var main = null
+enum GameStates {PLAY, DISTRIBUTION} # Состояния игры
+var game_state: GameStates = GameStates.DISTRIBUTION # Текущий этап игры
+var player: bool = false
+
+# Глобальные сцены
+var main = null # Главная сцена
+var deck = null # Колода
+var table = null # Стол
+
 # Переменная
 var config: Dictionary = _empty_conf() # Данные конфигураций
 var user_path: String = "user://data/" # Директория хранения данных конфигурации

@@ -26,4 +26,5 @@ func _on_timer_timeout() -> void:
 	if ($"../Hand".get_child_count() >= 18 and $"../Computer".get_child_count() >= 18) or \
 		Cards.get_child_count() == 0:
 			$Timer.stop()
+			Global.game_state = Global.GameStates.PLAY
 	$Label.set_text(str(Cards.get_child_count()))
