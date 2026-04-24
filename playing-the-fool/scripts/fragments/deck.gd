@@ -5,6 +5,7 @@ var card: Resource = load("res://scenes/fragments/pack.tscn")
 var user_idx: bool = true
 
 func _ready() -> void:
+	Global.deck = self
 	var card_array: Array = Array(range(1, 37))
 	while len(card_array) > 0:
 		Global.add_obj(Cards, card)
