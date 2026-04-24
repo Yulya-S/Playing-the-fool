@@ -18,6 +18,7 @@ func add_card() -> void:
 	else: get_child(-1).start_anim("growth")
 	_map_shift()
 
+# Изменение позиции карты
 func _map_shift() -> void:
 	for i in range(get_child_count()):
 		get_child(i).new_pos[0] = start_pos + (0.0 if get_child_count() <= 1 else (weight / (get_child_count() - 1)) * i)
