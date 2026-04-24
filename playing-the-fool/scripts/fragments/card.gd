@@ -48,7 +48,9 @@ func _on_mouse(entered: bool = true) -> void:
 		elif not entered and get_index() in get_parent().hovered_cards: get_parent().unhovered_cards.append(get_index())
 
 # Запуск анимации
-func start_anim(anim_name: String) -> void: $AnimationPlayer.play(anim_name)
+func start_anim(anim_name: String, backward: bool = false) -> void:
+	if not backward: $AnimationPlayer.play(anim_name)
+	else: $AnimationPlayer.play_backwards(anim_name)
 
 # Старт анимации поворота
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
