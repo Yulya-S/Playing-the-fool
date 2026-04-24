@@ -30,7 +30,8 @@ func _ready() -> void:
 		Cards.get_child(-1).position.y -= (36 - len(card_array)) * 0.5
 	# Обновление графических данных
 	CardsCount.set_text(str(Cards.get_child_count()))
-	$Suit.hide_shadow(Cards.get_child(0).suit)
+	$Suit/Line2D.visible = false
+	$Suit.frame = Cards.get_child(0).suit
 
 # Раздача карт
 func _on_timer_timeout() -> void:

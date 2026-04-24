@@ -41,11 +41,6 @@ func hide_card() -> void: frame = 40
 # Перемещение карты
 func transfer(height: float) -> void: new_pos = Vector2(position.x, height)
 
-# Скрытие тени карыт
-func hide_shadow(idx: int) -> void:
-	$Line2D.visible = false
-	frame = idx
-
 # Обработка наведения курсора мыши
 func _on_mouse(entered: bool = true) -> void:
 	if get_parent().name == "Hand" and Global.game_state == Global.GameStates.PLAY:
