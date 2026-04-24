@@ -11,11 +11,11 @@ var card: Resource = load("res://scenes/fragments/card.tscn") # Путь к сц
 var user_idx: bool = true # Порядок передачи карты
 
 # Включение и отключение таймера раздачи карт
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Global.game_state == Global.GameStates.DISTRIBUTION:
 		if DeckTimer.paused: DeckTimer.start()
 		elif (Player.cards_enough() and CI.cards_enough()) or Cards.get_child_count() == 0:
-			Global.game_state == Global.GameStates.PLAY
+			Global.game_state = Global.GameStates.PLAY
 			DeckTimer.stop()
 
 # Создание сцены
