@@ -1,11 +1,14 @@
 extends GameWindow
-# Путь к объекту в сцене
-@onready var Picker = $ColorPicker
 
 # Применение цвета
 func _ready() -> void:
-	Picker.color = Color("#"+Global.config.background_color)
+	$ColorPicker.color = Color("#"+Global.config.background_color)
 	$OptionButton.selected = Global.config.card_pack
+
+# Изменение карточного пака
+func _on_option_button_item_selected(index: int) -> void:
+	Global.config.card_pack = index
+	Global.save_config()
 
 # Изменение цвета фона
 func _on_color_picker_color_changed(color: Color) -> void:
@@ -17,8 +20,3 @@ func _on_color_picker_color_changed(color: Color) -> void:
 func _on_reset_color_button_down() -> void:
 	_on_color_picker_color_changed(Color("#"+Global._empty_conf().background_color))
 	_ready()
-
-# Изменение карточного пака
-func _on_option_button_item_selected(index: int) -> void:
-	Global.config.card_pack = index
-	Global.save_config()
