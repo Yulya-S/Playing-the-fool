@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://danjrvmftnkpy" path="res://img/card_packs/Карты Фентези.png" id="1_6dok6"]
 [ext_resource type="Texture2D" uid="uid://boy08ad6stka4" path="res://img/card_packs/Карты v1.png" id="2_otq1e"]
-[ext_resource type="Script" uid="uid://dbk8nte2aqh07" path="res://scripts/fragments/pack.gd" id="3_hv4hu"]
+[ext_resource type="Script" uid="uid://dbk8nte2aqh07" path="res://scripts/fragments/card.gd" id="3_hv4hu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6dok6"]
 atlas = ExtResource("1_6dok6")
@@ -686,7 +686,7 @@ _data = {
 &"hide": SubResource("Animation_17ntd")
 }
 
-[node name="Pack" type="AnimatedSprite2D"]
+[node name="Card" type="AnimatedSprite2D"]
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_r0akj")
 animation = &"0"

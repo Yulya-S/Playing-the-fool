@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://yk6gbargmxh5"]
 
-[ext_resource type="PackedScene" uid="uid://cskwp4r1g2e3m" path="res://scenes/fragments/pack.tscn" id="1_2x851"]
+[ext_resource type="PackedScene" uid="uid://cskwp4r1g2e3m" path="res://scenes/fragments/card.tscn" id="1_2x851"]
 [ext_resource type="Script" uid="uid://b3qqbfont2jp2" path="res://scripts/fragments/deck.gd" id="1_773x0"]
 [ext_resource type="Script" uid="uid://ij3ltfidj7l8" path="res://scripts/pages/game.gd" id="1_qlvyt"]
 [ext_resource type="Texture2D" uid="uid://biqd5kwm04uh1" path="res://img/icons/right.png" id="3_773x0"]
@@ -108,7 +108,7 @@ text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Pack" parent="Deck" instance=ExtResource("1_2x851")]
+[node name="Card" parent="Deck" instance=ExtResource("1_2x851")]
 position = Vector2(180, 0)
 
 [node name="Cards" type="Node2D" parent="Deck"]

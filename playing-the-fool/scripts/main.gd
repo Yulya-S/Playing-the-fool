@@ -2,7 +2,7 @@ extends Node2D
 # Путь к объекту в сцене
 @onready var CardAnimation = $Animation
 # Переменная
-var file: Resource = load("res://scenes/fragments/pack.tscn") # Путь к паку с картачными колодами
+var file: Resource = load("res://scenes/fragments/card.tscn") # Путь к паку с картачными колодами
 
 # Создание сцены
 func _ready() -> void:

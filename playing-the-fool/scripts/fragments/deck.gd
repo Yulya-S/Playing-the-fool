@@ -1,7 +1,7 @@
 extends Node2D
 @onready var Cards = $Cards
 # Переменная
-var card: Resource = load("res://scenes/fragments/pack.tscn")
+var card: Resource = load("res://scenes/fragments/card.tscn")
 var user_idx: bool = true
 
 func _ready() -> void:
@@ -13,7 +13,7 @@ func _ready() -> void:
 		Cards.get_child(-1).position.x += (36 - len(card_array)) * 0.5
 		Cards.get_child(-1).position.y -= (36 - len(card_array)) * 0.5
 	$Label.set_text(str(Cards.get_child_count()))
-	$Pack.hide_shadow(Cards.get_child(0).suit)
+	$Card.hide_shadow(Cards.get_child(0).suit)
 
 func dealing_cards(user: Hand) -> void:
 	Cards.get_child(-1).reparent(user)
