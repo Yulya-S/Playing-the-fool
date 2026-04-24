@@ -128,7 +128,7 @@ script = ExtResource("5_hm6wi")
 
 [node name="Computer" type="Node2D" parent="."]
 script = ExtResource("5_kt16h")
-start_pos = 370.0
+start_pos = 400.0
 weight = 600.0
 show_card = false
 
