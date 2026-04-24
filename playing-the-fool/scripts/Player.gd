@@ -23,7 +23,7 @@ func _input(event: InputEvent) -> void:
 		if get_child(clicked) == null: return
 		if GameZone.mouse_hover():
 			get_child(clicked).reparent(GameZone)
-			GameZone.get_child(-1).rotate_data = [true, randi_range(-15, 15)]
+			GameZone.get_child(-1).rotate_data = [true, randf_range(-0.2, 0.2)]
 			GameZone.get_child(-1).get_child(-1).play_backwards("growth")
 			_map_shift()
 		else:
