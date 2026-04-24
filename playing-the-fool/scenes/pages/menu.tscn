@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c7dqg77vrrfws"]
 
-[ext_resource type="Script" uid="uid://c8xl8ftpakgvs" path="res://scripts/pages/menu.gd" id="1_yqeox"]
+[ext_resource type="Script" uid="uid://bqbsp7gb4wagr" path="res://scripts/fragments/window.gd" id="1_7pm6w"]
 [ext_resource type="Texture2D" uid="uid://ds7eoua3f5jjk" path="res://img/icons/start.png" id="2_7pm6w"]
 [ext_resource type="Texture2D" uid="uid://d4e74wjn8hhqh" path="res://img/icons/gear.png" id="2_ohr8o"]
 [ext_resource type="Texture2D" uid="uid://wht0kkbpyd7h" path="res://img/icons/statistic.png" id="3_aur8p"]
@@ -10,7 +10,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
-script = ExtResource("1_yqeox")
+script = ExtResource("1_7pm6w")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

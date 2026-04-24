@@ -52,4 +52,4 @@ offset_bottom = 148.0
 scale = Vector2(0.6, 0.6)
 icon = ExtResource("3_qr3t7")
 
-[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="Button" to="." method="_on_window_button_down"]

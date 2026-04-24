@@ -1,4 +1,4 @@
-extends Control
+extends GameWindow
 # Путь к объекту в сцене
 @onready var Picker = $ColorPicker
 
@@ -22,6 +22,3 @@ func _on_reset_color_button_down() -> void:
 func _on_option_button_item_selected(index: int) -> void:
 	Global.config.card_pack = index
 	Global.save_config()
-
-# Закрытие окна статистики
-func _on_button_button_down() -> void: Global.close_window("menu")

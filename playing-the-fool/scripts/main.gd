@@ -18,3 +18,10 @@ func _on_timer_timeout() -> void:
 	$Animation.get_child(-1).modulate.a = 0.
 	$Animation.get_child(-1).get_child(-1).play("fall")
 	if $Animation.get_child_count() > 11: $Animation.get_child(1 + randi() % 5).get_child(-1).play("hide")
+
+# Открытие нового окна
+func close_window(new_window: String) -> void:
+	Global.delete_child(self, get_child(-1))
+	Global.add_obj(self, load("res://scenes/pages/"+new_window+".tscn"))
+	get_child(1).visible = not (new_window == "game")
+	get_child(1).get_child(0).set_paused(new_window == "game")

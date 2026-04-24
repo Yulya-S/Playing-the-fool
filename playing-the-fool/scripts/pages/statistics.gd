@@ -1,4 +1,4 @@
-extends Control
+extends GameWindow
 # Путь к объекту в сцене
 @onready var LinesContainer = $ScrollContainer/VBoxContainer
 # Переменные
@@ -21,6 +21,3 @@ func set_value(value: Dictionary) -> void:
 	for i in LinesContainer.get_child(-1).get_children():
 		if i.name.to_lower() in value.keys(): i.set_text(str(int(value[i.name.to_lower()])))
 	LinesContainer.get_child(-1).get_child(1).set_text("_USER" + LinesContainer.get_child(-1).get_child(1).text)
-
-# Закрытие окна статистики
-func _on_button_button_down() -> void: Global.close_window("menu")

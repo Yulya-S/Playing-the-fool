@@ -195,6 +195,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_jl74o")
 }
 
-[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="Button" to="." method="_on_window_button_down"]
 [connection signal="timeout" from="Deck/Timer" to="Deck" method="_on_timer_timeout"]
 [connection signal="animation_finished" from="FirstMoveDetermination/Result/AnimationPlayer" to="FirstMoveDetermination/Arrow" method="_on_animation_player_animation_finished"]
