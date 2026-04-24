@@ -15,9 +15,7 @@ func add_card() -> void:
 	get_child(-1).transfer(height)
 	get_child(-1).rotation = 0.0
 	if not show_card: get_child(-1).hide_card()
-	else:
-		get_child(-1).show_card()
-		get_child(-1).start_anim("growth")
+	else: get_child(-1).start_anim("growth")
 	_map_shift()
 
 func _map_shift() -> void:
