@@ -18,4 +18,4 @@ func _process(_delta: float) -> void:
 		var value: Dictionary = lines.pop_front()
 		for i in LinesContainer.get_child(-1).get_children():
 			if i.name.to_lower() in value.keys(): i.set_text(str(int(value[i.name.to_lower()])))
-		LinesContainer.get_child(-1).get_child(1).set_text("_USER" + LinesContainer.get_child(-1).get_child(1).text)
+		LinesContainer.get_child(-1).get_child(1).set_text(tr("__USER" + LinesContainer.get_child(-1).get_child(1).text))

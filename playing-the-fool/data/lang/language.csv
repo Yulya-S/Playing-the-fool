@@ -1,0 +1,16 @@
+id	en	ru
+_LABEL	Playing «The Fool»	Игра в «Дурака»
+_STATISTICS	Statistics	Статистика
+_WINNER	Winner	Победитель
+_MOVES	Number of moves	Количество ходов
+_COUNT	Number of cards	Количество карт
+__USER0	Player	Игрок
+__USER1	Computer	Компьютер
+_DETERMINE	We determine the order of the moves 	Определяем порядок хода
+_FIRST	Goes first	Первым ходит
+_SETTINGS	Settings	Настройки
+_BACKGROUND	Background color	Цвет фона
+_RESET	Reset color	Сбросить цвет
+_DECK_TYPE	Deck type	Тип колоды
+__DECK0	Fantasy deck	Фэнтези колода
+__DECK1	v1	v1

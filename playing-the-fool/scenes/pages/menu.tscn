@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://c7dqg77vrrfws"]
 
 [ext_resource type="Script" uid="uid://bqbsp7gb4wagr" path="res://scripts/fragments/window.gd" id="1_7pm6w"]
-[ext_resource type="Texture2D" uid="uid://ds7eoua3f5jjk" path="res://img/icons/start.png" id="2_7pm6w"]
-[ext_resource type="Texture2D" uid="uid://d4e74wjn8hhqh" path="res://img/icons/gear.png" id="2_ohr8o"]
-[ext_resource type="Texture2D" uid="uid://wht0kkbpyd7h" path="res://img/icons/statistic.png" id="3_aur8p"]
+[ext_resource type="Texture2D" uid="uid://ds7eoua3f5jjk" path="res://data/img/icons/start.png" id="2_7pm6w"]
+[ext_resource type="Texture2D" uid="uid://d4e74wjn8hhqh" path="res://data/img/icons/gear.png" id="2_ohr8o"]
+[ext_resource type="Texture2D" uid="uid://wht0kkbpyd7h" path="res://data/img/icons/statistic.png" id="3_aur8p"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -21,9 +21,10 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 50
-text = "Игра \"Дурак\""
+text = "_LABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
 [node name="Play" type="Button" parent="."]
 layout_mode = 0

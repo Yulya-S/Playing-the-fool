@@ -10,7 +10,7 @@ func _ready() -> void:
 	var deg: int = int(rad_to_deg(final_rotation)) % 360
 	# Применение результата
 	Global.player = deg < 90 or deg > 270
-	Result.set_text("_USER"+str(int(Global.player)))
+	Result.set_text(tr("__USER"+str(int(Global.player))))
 	Result.add_theme_color_override("font_outline_color", Color("#fe0033") if Global.player else Color("#0092d6"))
 	# Анимация вращения стрелки
 	var tween = create_tween()

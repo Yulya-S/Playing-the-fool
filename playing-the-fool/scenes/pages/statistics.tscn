@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://da62wqyvdt5bw"]
 
 [ext_resource type="Script" uid="uid://rpsublaf2l3p" path="res://scripts/pages/statistics.gd" id="1_qr3t7"]
-[ext_resource type="Texture2D" uid="uid://biqd5kwm04uh1" path="res://img/icons/right.png" id="3_qr3t7"]
+[ext_resource type="Texture2D" uid="uid://biqd5kwm04uh1" path="res://data/img/icons/right.png" id="3_qr3t7"]
 
 [node name="Statistics" type="Control"]
 layout_mode = 3
@@ -39,9 +39,10 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 50
-text = "Статистика"
+text = "_STATISTICS"
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0

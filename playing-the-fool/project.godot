@@ -31,6 +31,10 @@ click={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://data/lang/language.en.translation", "res://data/lang/language.ru.translation")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

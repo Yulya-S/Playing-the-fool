@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://cskwp4r1g2e3m" path="res://scenes/fragments/card.tscn" id="1_2x851"]
 [ext_resource type="Script" uid="uid://b3qqbfont2jp2" path="res://scripts/fragments/deck.gd" id="1_773x0"]
 [ext_resource type="Script" uid="uid://ij3ltfidj7l8" path="res://scripts/pages/game.gd" id="1_qlvyt"]
-[ext_resource type="Texture2D" uid="uid://biqd5kwm04uh1" path="res://img/icons/right.png" id="3_773x0"]
+[ext_resource type="Texture2D" uid="uid://biqd5kwm04uh1" path="res://data/img/icons/right.png" id="3_773x0"]
 [ext_resource type="Script" uid="uid://cr5t1jwrb3u6n" path="res://scripts/Hands/CI.gd" id="5_5is8n"]
 [ext_resource type="Script" uid="uid://b8ge4qi36pnxf" path="res://scripts/fragments/table.gd" id="5_hm6wi"]
-[ext_resource type="Texture2D" uid="uid://wht0kkbpyd7h" path="res://img/icons/statistic.png" id="5_ut5xk"]
+[ext_resource type="Texture2D" uid="uid://wht0kkbpyd7h" path="res://data/img/icons/statistic.png" id="5_ut5xk"]
 [ext_resource type="Script" uid="uid://lfe3evc0ov1u" path="res://scripts/Hands/Player.gd" id="6_jl74o"]
 [ext_resource type="Script" uid="uid://cv3y2qsx48bj7" path="res://scripts/fragments/first_move_determination.gd" id="6_ut5xk"]
 
@@ -154,7 +154,6 @@ disabled = true
 text = "Бита"
 
 [node name="FirstMoveDetermination" type="ColorRect" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -174,8 +173,9 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 50
-text = "Определяем порядок хода"
+text = "_DETERMINE"
 horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="Arrow" type="Sprite2D" parent="FirstMoveDetermination"]
 position = Vector2(576, 324)
@@ -192,7 +192,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.994273, 0, 0.201686, 1)
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 50
-text = "Определяем порядок хода"
+text = "_FIRST"
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="FirstMoveDetermination/Result"]
@@ -203,8 +203,9 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 40
-text = "Первым ходит"
+text = "_FIRST"
 horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FirstMoveDetermination/Result"]
 libraries = {
