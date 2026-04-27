@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://danjrvmftnkpy"
-path="res://.godot/imported/Карты Фентези.png-3096233a289203acc4c80a2251b0fa97.ctex"
+uid="uid://ds7eoua3f5jjk"
+path="res://.godot/imported/start.png-d4d363a7bea88de89e82c2917be6bbed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/card_packs/Карты Фентези.png"
-dest_files=["res://.godot/imported/Карты Фентези.png-3096233a289203acc4c80a2251b0fa97.ctex"]
+source_file="res://data/img/icons/start.png"
+dest_files=["res://.godot/imported/start.png-d4d363a7bea88de89e82c2917be6bbed.ctex"]
 
 [params]
 
