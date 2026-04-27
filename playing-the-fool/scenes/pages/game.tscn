@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://b3qqbfont2jp2" path="res://scripts/fragments/deck.gd" id="1_773x0"]
 [ext_resource type="Script" uid="uid://ij3ltfidj7l8" path="res://scripts/pages/game.gd" id="1_qlvyt"]
 [ext_resource type="Texture2D" uid="uid://biqd5kwm04uh1" path="res://img/icons/right.png" id="3_773x0"]
+[ext_resource type="Script" uid="uid://cr5t1jwrb3u6n" path="res://scripts/Hands/CI.gd" id="5_5is8n"]
 [ext_resource type="Script" uid="uid://b8ge4qi36pnxf" path="res://scripts/fragments/table.gd" id="5_hm6wi"]
-[ext_resource type="Script" uid="uid://c2th33oclx47y" path="res://scripts/fragments/Hand.gd" id="5_kt16h"]
 [ext_resource type="Texture2D" uid="uid://wht0kkbpyd7h" path="res://img/icons/statistic.png" id="5_ut5xk"]
-[ext_resource type="Script" uid="uid://lfe3evc0ov1u" path="res://scripts/Player.gd" id="6_jl74o"]
+[ext_resource type="Script" uid="uid://lfe3evc0ov1u" path="res://scripts/Hands/Player.gd" id="6_jl74o"]
 [ext_resource type="Script" uid="uid://cv3y2qsx48bj7" path="res://scripts/fragments/first_move_determination.gd" id="6_ut5xk"]
 
 [sub_resource type="Animation" id="Animation_kt16h"]
@@ -82,6 +82,20 @@ offset_right = 1152.0
 offset_bottom = 648.0
 script = ExtResource("1_qlvyt")
 
+[node name="CICardsCount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1029.0
+offset_top = 31.0
+offset_right = 1121.0
+offset_bottom = 169.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="Deck" type="Node2D" parent="."]
 position = Vector2(69, 102)
 script = ExtResource("1_773x0")
@@ -118,7 +132,7 @@ offset_bottom = 484.0
 script = ExtResource("5_hm6wi")
 
 [node name="Computer" type="Node2D" parent="."]
-script = ExtResource("5_kt16h")
+script = ExtResource("5_5is8n")
 start_pos = 400.0
 max_weight = 600.0
 show_card = false
