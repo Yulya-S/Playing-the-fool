@@ -6,9 +6,10 @@ _MOVES	Number of moves	Количество ходов
 _COUNT	Number of cards	Количество карт
 __USER0	Player	Игрок
 __USER1	Computer	Компьютер
-_DETERMINE	We determine the order of the moves 	Определяем порядок хода
+_DETERMINE	We determine the order of the moves	Определяем порядок хода
 _FIRST	Goes first	Первым ходит
 _SETTINGS	Settings	Настройки
+_LANGUAGE	Language:	Язык:
 _BACKGROUND	Background color	Цвет фона
 _RESET	Reset color	Сбросить цвет
 _DECK_TYPE	Deck type	Тип колоды

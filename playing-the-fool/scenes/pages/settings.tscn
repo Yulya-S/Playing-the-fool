@@ -30,7 +30,27 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="OptionButton" type="OptionButton" parent="."]
+[node name="Language" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 1016.0
+offset_top = 10.0
+offset_right = 1142.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 20
+text_overrun_behavior = 3
+
+[node name="Label" type="Label" parent="Language"]
+layout_mode = 0
+offset_left = -152.0
+offset_right = -5.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 20
+text = "_LANGUAGE"
+horizontal_alignment = 2
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="DeckType" type="OptionButton" parent="."]
 layout_mode = 0
 offset_left = 288.0
 offset_top = 150.0
@@ -45,7 +65,7 @@ popup/item_0/id = 0
 popup/item_1/text = "__DECK1"
 popup/item_1/id = 1
 
-[node name="Label" type="Label" parent="OptionButton"]
+[node name="Label" type="Label" parent="DeckType"]
 layout_mode = 0
 offset_left = 10.0
 offset_top = -28.0
@@ -54,7 +74,7 @@ theme_override_font_sizes/font_size = 20
 text = "_DECK_TYPE"
 text_overrun_behavior = 3
 
-[node name="Label2" type="Label" parent="."]
+[node name="ColorLabel" type="Label" parent="."]
 layout_mode = 2
 offset_left = 430.0
 offset_top = 230.0
@@ -95,7 +115,8 @@ offset_bottom = 148.0
 scale = Vector2(0.6, 0.6)
 icon = ExtResource("2_fnqb4")
 
-[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="Language" to="." method="_on_language_item_selected"]
+[connection signal="item_selected" from="DeckType" to="." method="_on_deck_type_item_selected"]
 [connection signal="color_changed" from="ColorPicker" to="." method="_on_color_picker_color_changed"]
 [connection signal="button_down" from="ResetColor" to="." method="_on_reset_color_button_down"]
 [connection signal="button_down" from="Button" to="." method="_on_window_button_down"]

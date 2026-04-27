@@ -13,7 +13,8 @@ func _ready() -> void:
 	if not DirAccess.dir_exists_absolute(Global.user_path): DirAccess.make_dir_absolute(Global.user_path)
 	if not FileAccess.file_exists(Global.stats_file_path): Global.store_json(Global.stats_file_path, [])
 	Global.create_config()
-
+	TranslationServer.set_locale(Global.config.lang)
+	
 # Таймер для анимации
 func _on_timer_timeout() -> void:
 	Global.add_obj(CardAnimation, file)

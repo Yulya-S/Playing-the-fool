@@ -36,7 +36,7 @@ func create_config() -> void:
 	if FileAccess.file_exists(conf_file_path):
 		var new: Dictionary = read_file(conf_file_path)
 		if new.keys() == config.keys():
-			Global.config = new
+			config = new
 			return
 	save_config()
 
@@ -50,7 +50,7 @@ func save_stats(moves: int, winner: bool, cards_count: int) -> void:
 	_store_json(stats_file_path, data)
 
 # Пустой словарь конфигурации
-func _empty_conf() -> Dictionary: return {"background_color": Color.DARK_GREEN.to_html(), "card_pack": 0}
+func _empty_conf() -> Dictionary: return {"background_color": Color.DARK_GREEN.to_html(), "card_pack": 0, "lang": "ru"}
 
 # Очистка данных пользователя
 func clear_config() -> void:
