@@ -25,7 +25,7 @@ func _map_shift() -> void:
 	if get_child_count() > 0:
 		var weight: float = 100 * (get_child_count() - 1)
 		if weight > max_weight: weight = max_weight
-		step = weight / (get_child_count() - 1)
+		step = weight / (get_child_count())
 	# Применение новой позиции
 	for i in range(get_child_count()):
-		get_child(i).new_pos[0] = start_pos + (max_weight - step * get_child_count()) / 2 + step * i
+		get_child(i).new_pos[0] = start_pos + (max_weight - step * (get_child_count() - 1)) / 2 + step * i
