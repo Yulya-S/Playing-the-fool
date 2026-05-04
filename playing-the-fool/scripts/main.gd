@@ -6,15 +6,15 @@ var file: Resource = load("res://scenes/fragments/card.tscn") # Путь к па
 
 # Создание сцены
 func _ready() -> void:
-	# Настройки
-	Global.main = self
-	$Sprite2D.modulate = Color("#"+Global.config.background_color)
 	# Создание файлов и директорий
 	if not DirAccess.dir_exists_absolute(Global.user_path): DirAccess.make_dir_absolute(Global.user_path)
 	if not FileAccess.file_exists(Global.stats_file_path): Global.store_json(Global.stats_file_path, [])
 	Global.create_config()
 	TranslationServer.set_locale(Global.config.lang)
-	
+	# Настройки
+	Global.main = self
+	$Sprite2D.modulate = Color("#"+Global.config.background_color)
+
 # Таймер для анимации
 func _on_timer_timeout() -> void:
 	Global.add_obj(CardAnimation, file)
