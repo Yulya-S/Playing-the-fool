@@ -723,16 +723,19 @@ layout_mode = 3
 anchors_preset = 0
 offset_left = -122.0
 offset_top = -172.0
-offset_right = 122.0
-offset_bottom = 173.0
+offset_right = 123.0
+offset_bottom = 172.0
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line2D" type="Line2D" parent="Control"]
+position = Vector2(122, 172)
+scale = Vector2(1, 1)
 points = PackedVector2Array(-125, 174, 125, 174, 125, -174, -125, -174)
 closed = true
 width = 4.0
 default_color = Color(0.118581, 0.118581, 0.118581, 0.380392)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_5xwgq")
 }
@@ -782,5 +785,5 @@ centered = false
 
 [connection signal="mouse_entered" from="Control" to="." method="_on_mouse" binds= [true]]
 [connection signal="mouse_exited" from="Control" to="." method="_on_mouse" binds= [false]]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
+[connection signal="animation_finished" from="Control/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_started" from="Control/AnimationPlayer" to="." method="_on_animation_player_animation_started"]

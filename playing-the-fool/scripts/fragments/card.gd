@@ -7,9 +7,9 @@ class_name Card
 var suit: int = 0 # Масть
 var price: int = 0 # Цена
 var trump: bool = false # Метка козырности
-# Переменные для плавного движения
-var rotate_data: Array = [false, 0] # Данные для поворота карты
-var new_pos: Vector2 = Vector2(0, 0)
+# Переменные для хранения данных для плавного движения карты
+var rotate_data: Array = [false, 0] # Поворот
+var new_pos: Vector2 = Vector2(0, 0) # Перемещение
 
 # Применение карточного пака
 func _ready() -> void: animation = str(int(Global.config.card_pack))
@@ -25,22 +25,23 @@ func _process(delta: float) -> void:
 		position = position.move_toward(new_pos, (1000.0 if new_pos.y != position.y else 500.0) * delta)
 
 # Отображение цены и масти карты
-func _set_price_suit(new_suit: int, new_price: int) -> void:
+func _set_price_suit(idx: int) -> void:
 	for i in [v1, v2]:
-		i.get_child(1).frame = new_suit
-		i.get_child(0).set_text(str(new_price))
-		if new_price > 10: i.get_child(0).set_text(tr(["_J", "_Q", "_K","_A"][new_price - 11]))
+		i.get_child(1).frame = idx % 4
+		i.get_child(0).set_text(str(int(idx / 4. + 6.)))
+		if int(idx / 4. + 6.) > 10:
+			i.get_child(0).set_text(tr(["_J", "_Q", "_K","_A"][int(idx / 4. + 6.) - 11]))
 
 # Изменение текстуры карты
 func set_new_frame(idx: int) -> void:
+	_set_price_suit(idx)
 	frame = idx
-	_set_price_suit(idx % 4, int(idx / 4. + 6.))
 
 # Применение значения карты
 func set_value(idx: int) -> void:
+	_set_price_suit(idx)
 	price = int(idx / 4. + 6.)
 	suit = idx % 4
-	_set_price_suit(suit, price)
 	hide_card()
 	if get_parent().get_child_count() == 1:
 		rotation_degrees = 90
@@ -69,8 +70,7 @@ func _on_mouse(entered: bool = true) -> void:
 
 # Запуск анимации
 func start_anim(anim_name: String, backward: bool = false) -> void:
-	if not backward: $AnimationPlayer.play(anim_name)
-	else: $AnimationPlayer.play_backwards(anim_name)
+	$Control/AnimationPlayer.play(anim_name, -1, [1., -1.][int(backward)], backward)
 
 # Старт анимации поворота
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
