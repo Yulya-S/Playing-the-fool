@@ -1,8 +1,6 @@
 extends Control
-var card_prices: Array = []
-
-# Создание сцены
-func _ready() -> void: Global.table = self
+# Переменная
+var card_prices: Array = [] # Значения карт на столе
 
 # Проверка находится ли курсор мыши в зоне стола
 func mouse_hover() -> bool:
