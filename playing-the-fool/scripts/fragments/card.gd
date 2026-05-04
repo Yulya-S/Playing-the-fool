@@ -34,7 +34,7 @@ func _set_price_suit(new_suit: int, new_price: int) -> void:
 # Изменение текстуры карты
 func set_new_frame(idx: int) -> void:
 	frame = idx
-	_set_price_suit(idx % 4, int(idx / 4 + 6.))
+	_set_price_suit(idx % 4, int(idx / 4. + 6.))
 
 # Применение значения карты
 func set_value(idx: int) -> void:
