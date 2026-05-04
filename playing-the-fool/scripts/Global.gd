@@ -66,3 +66,7 @@ func delete_child(parent: Variant, child: Variant) -> void:
 # Добавление дочернего объекта
 func add_obj(parent: Node, path: Resource) -> void:
 	parent.add_child(path.instantiate())
+
+# Прочие функции
+# Получение перевода имени пользователя
+func user_name(idx: Variant) -> String: return tr("__USER" + str(int(idx)))
