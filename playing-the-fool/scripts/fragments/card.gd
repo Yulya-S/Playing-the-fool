@@ -74,7 +74,9 @@ func start_anim(anim_name: String, backward: bool = false) -> void:
 
 # Старт анимации поворота
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
-	if anim_name == "fall": rotate_data = [true, randf_range(0., TAU)]
+	if anim_name == "fall":
+		modulate.a = 0.
+		rotate_data = [true, randf_range(0., TAU)]
 
 # Сигнал завершения анимации
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
