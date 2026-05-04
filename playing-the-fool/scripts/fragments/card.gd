@@ -1,5 +1,8 @@
 extends AnimatedSprite2D
 class_name Card
+# Пути к объектам в сцене
+@onready var v1 = $Value1
+@onready var v2 = $Value2
 # Переменные
 var suit: int = 0 # Масть
 var price: int = 0 # Цена
@@ -21,10 +24,23 @@ func _process(delta: float) -> void:
 	if new_pos != position and get_parent() is Hand:
 		position = position.move_toward(new_pos, (1000.0 if new_pos.y != position.y else 500.0) * delta)
 
+# Отображение цены и масти карты
+func _set_price_suit(new_suit: int, new_price: int) -> void:
+	for i in [v1, v2]:
+		i.get_child(1).frame = new_suit
+		i.get_child(0).set_text(str(new_price))
+		if new_price > 10: i.get_child(0).set_text(tr(["_J", "_Q", "_K","_A"][new_price - 11]))
+
+# Изменение текстуры карты
+func set_new_frame(idx: int) -> void:
+	frame = idx
+	_set_price_suit(idx % 4, int(idx / 4 + 6.))
+
 # Применение значения карты
 func set_value(idx: int) -> void:
-	price = int((3. + idx) / 4. + 5.)
-	suit = (3 + idx) % 4
+	price = int(idx / 4. + 6.)
+	suit = idx % 4
+	_set_price_suit(suit, price)
 	hide_card()
 	if get_parent().get_child_count() == 1:
 		rotation_degrees = 90
@@ -34,9 +50,13 @@ func set_value(idx: int) -> void:
 	elif get_parent().get_child(0).suit == suit: trump = true
 
 # Переворот карты
-func show_card() -> void: frame = (price - 5) * 4 + suit
+func show_card() -> void:
+	frame = (price - 6) * 4 + suit
+	for i in [v1, v2]: i.visible = true
 
-func hide_card() -> void: frame = 40
+func hide_card() -> void:
+	frame = 40
+	for i in [v1, v2]: i.visible = false
 
 # Перемещение карты
 func transfer(height: float) -> void: new_pos = Vector2(position.x, height)

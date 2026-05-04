@@ -19,7 +19,8 @@ func _ready() -> void:
 func _on_timer_timeout() -> void:
 	Global.add_obj(CardAnimation, file)
 	CardAnimation.get_child(-1).position = Vector2(randi_range(50, 1100), randi_range(50, 550))
-	CardAnimation.get_child(-1).frame = 4 + randi() % 36
+	CardAnimation.get_child(-1).set_new_frame(randi() % 36)
+	#CardAnimation.get_child(-1).frame = 4 + randi() % 36
 	CardAnimation.get_child(-1).modulate.a = 0.
 	CardAnimation.get_child(-1).start_anim("fall")
 	if CardAnimation.get_child_count() > 11: CardAnimation.get_child(1).start_anim("hide")

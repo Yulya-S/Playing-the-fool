@@ -8,6 +8,10 @@ __USER0	Player	Игрок
 __USER1	Computer	Компьютер
 _DETERMINE	We determine the order of the moves	Определяем порядок хода
 _FIRST	Goes first	Первым ходит
+_J	J	В
+_Q	Q	Д
+_K	K	К
+_A	A	Т
 _SETTINGS	Settings	Настройки
 _LANGUAGE	Language:	Язык:
 _BACKGROUND	Background color	Цвет фона
