@@ -7,7 +7,6 @@ var player: bool = false # Кому принадлежит текущий ход
 # Глобальные сцены
 var main = null # Главная сцена
 var deck = null # Колода
-var table = null # Стол
 
 # Переменная
 var config: Dictionary = _empty_conf() # Данные конфигураций
