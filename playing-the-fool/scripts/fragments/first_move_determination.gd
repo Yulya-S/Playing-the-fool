@@ -16,7 +16,7 @@ func _ready() -> void:
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_QUART)
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "rotation", final_rotation, 3.0)
+	tween.tween_property(self, "rotation", final_rotation, 2.2)
 	await tween.finished
 	# Запуск отображения первого игрока
 	RAnimationPlayer.play("show")
