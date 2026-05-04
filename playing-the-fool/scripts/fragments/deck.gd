@@ -24,13 +24,11 @@ func _ready() -> void:
 	# Создание и перемешивание калоды
 	var card_array: Array = Array(range(0, 36))
 	while len(card_array) > 0:
-		
 		Global.add_obj(Cards, card)
 		Cards.get_child(-1).set_value(card_array.pop_at(randi() % len(card_array)))
 		Cards.get_child(-1).position.x += (36 - len(card_array)) * 0.5
 		Cards.get_child(-1).position.y -= (36 - len(card_array)) * 0.5
 	# Обновление графических данных
-	CardsCount.set_text(str(Cards.get_child_count()))
 	$Suit.frame = Cards.get_child(0).suit
 
 # Раздача карт
