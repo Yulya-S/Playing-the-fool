@@ -10,14 +10,6 @@ extends Node2D
 var card: Resource = load("res://scenes/fragments/card.tscn") # Путь к сцене карты
 var user_idx: bool = true # Порядок передачи карты
 
-# Включение и отключение таймера раздачи карт
-func _process(_delta: float) -> void:
-	if Global.game_state == Global.GameStates.DISTRIBUTION:
-		if DeckTimer.paused: DeckTimer.start()
-		elif (Player.cards_enough() and CI.cards_enough()) or Cards.get_child_count() == 0:
-			get_parent().set_stage(Global.GameStates.PLAY)
-			DeckTimer.stop()
-
 # Создание сцены
 func _ready() -> void:
 	Global.deck = self
@@ -30,6 +22,14 @@ func _ready() -> void:
 		Cards.get_child(-1).position.y -= (36 - len(card_array)) * 0.5
 	# Обновление графических данных
 	$Suit.frame = Cards.get_child(0).suit
+
+# Включение и отключение таймера раздачи карт
+func _process(_delta: float) -> void:
+	if Global.game_state == Global.GameStates.DISTRIBUTION:
+		if DeckTimer.paused: DeckTimer.start()
+		elif (Player.cards_enough() and CI.cards_enough()) or Cards.get_child_count() == 0:
+			get_parent().set_stage(Global.GameStates.PLAY)
+			DeckTimer.stop()
 
 # Раздача карт
 func _on_timer_timeout() -> void:
