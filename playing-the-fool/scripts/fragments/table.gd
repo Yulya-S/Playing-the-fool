@@ -11,8 +11,9 @@ func mouse_hover() -> bool:
 func _check_pos(mouse_pos: Vector2, idx: int) -> bool:
 	return mouse_pos[idx] > position[idx] and mouse_pos[idx] < position[idx] + size[idx]
 
+# Сброс карты на стол, во время хода игрока
 func add_card(card: Node) -> bool:
-	if len(card_prices) == 0 or card.price in card_prices:
+	if not Global.player and (len(card_prices) == 0 or card.price in card_prices):
 		if len(card_prices) == 0: card_prices.append(card.price)
 		card.reparent(self)
 		get_child(-1).rotate_data = [true, randf_range(-0.2, 0.2)]
