@@ -728,7 +728,6 @@ offset_bottom = 172.0
 
 [node name="Line2D" type="Line2D" parent="Control"]
 position = Vector2(122, 172)
-scale = Vector2(1, 1)
 points = PackedVector2Array(-125, 174, 125, 174, 125, -174, -125, -174)
 closed = true
 width = 4.0
