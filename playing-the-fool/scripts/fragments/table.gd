@@ -17,5 +17,6 @@ func add_card(card: Node) -> bool:
 		if len(card_prices) == 0: card_prices.append(card.price)
 		card.reparent(self)
 		get_child(-1).rotate_data = [true, randf_range(-0.2, 0.2)]
+		get_child(-1).new_pos = get_child(-1).position
 		return true
 	return false

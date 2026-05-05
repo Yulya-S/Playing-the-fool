@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 		rotation = lerp_angle(rotation, rotate_data[1], 1.2 * delta)
 		if abs(fposmod(rotation, TAU) - rotate_data[1]) < 0.05: rotate_data[0] = false
 	# Перемещение
-	if new_pos != position and get_parent() is Hand:
+	if new_pos != position and get_parent().name not in ["Cards", "Animation"]:
 		position = position.move_toward(new_pos, (1000.0 if new_pos.y != position.y else 500.0) * delta)
 
 # Получение "реальной" цены карты

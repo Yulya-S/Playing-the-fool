@@ -26,7 +26,8 @@ func _input(event: InputEvent) -> void:
 		else:
 			Table.get_child(-1).start_anim("growth", true)
 			_map_shift()
-		for i in [hovered_cards, unhovered_cards]: i = i.filter(_clear_cards_array)
+		hovered_cards = hovered_cards.filter(_clear_cards_array)
+		unhovered_cards = unhovered_cards.filter(_clear_cards_array)
 		clicked = -1
 
 # Фильтр для списков карт

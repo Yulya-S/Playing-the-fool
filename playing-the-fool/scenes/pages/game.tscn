@@ -164,7 +164,7 @@ autostart = true
 [node name="Table" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 40.0
-offset_top = 183.0
+offset_top = 211.0
 offset_right = 1114.0
 offset_bottom = 484.0
 script = ExtResource("5_hm6wi")

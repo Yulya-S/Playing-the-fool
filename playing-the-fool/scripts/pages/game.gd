@@ -9,7 +9,9 @@ func _ready() -> void: set_stage(Global.GameStates.DISTRIBUTION)
 func set_stage(state: Global.GameStates) -> void:
 	Global.game_state = state
 	Dropping.disabled = state == Global.GameStates.DISTRIBUTION
-	if state == Global.GameStates.PLAY: Dropping.set_text(tr(["_ATTACK", "_PROTECT"][int(Global.player)]))
+	if state == Global.GameStates.PLAY:
+		Dropping.set_text(tr(["_ATTACK", "_PROTECT"][int(Global.player)]))
+		if Global.player: $Computer.shot()
 
 # Обработка нажатия на кнопку завершения хода игрока
 func _on_dropping_button_down() -> void: if $Table.get_child_count() == 0: return
