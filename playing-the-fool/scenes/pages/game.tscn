@@ -196,11 +196,6 @@ offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 0.34902)
 
-[node name="Line2D" type="Line2D" parent="FirstMoveDetermination"]
-points = PackedVector2Array(0, 324, 1152, 324)
-width = 2.0
-default_color = Color(0, 0, 0, 1)
-
 [node name="Label" type="Label" parent="FirstMoveDetermination"]
 layout_mode = 0
 offset_top = 142.0
@@ -213,6 +208,12 @@ theme_override_font_sizes/font_size = 50
 text = "_DETERMINE"
 horizontal_alignment = 1
 text_overrun_behavior = 3
+
+[node name="Line2D" type="Line2D" parent="FirstMoveDetermination/Label"]
+position = Vector2(0, -142)
+points = PackedVector2Array(0, 324, 1152, 324)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
 
 [node name="Arrow" type="Sprite2D" parent="FirstMoveDetermination"]
 position = Vector2(576, 324)
@@ -259,5 +260,6 @@ scale = Vector2(0.6, 0.6)
 icon = ExtResource("3_773x0")
 
 [connection signal="timeout" from="Deck/Timer" to="Deck" method="_on_timer_timeout"]
+[connection signal="button_down" from="Dropping" to="." method="_on_dropping_button_down"]
 [connection signal="animation_finished" from="FirstMoveDetermination/Result/AnimationPlayer" to="FirstMoveDetermination/Arrow" method="_on_animation_player_animation_finished"]
 [connection signal="button_down" from="Back" to="." method="_on_window_button_down"]
