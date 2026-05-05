@@ -24,6 +24,20 @@ func _process(delta: float) -> void:
 	if new_pos != position and get_parent() is Hand:
 		position = position.move_toward(new_pos, (1000.0 if new_pos.y != position.y else 500.0) * delta)
 
+# Получение "реальной" цены карты
+func _get_price() -> int: return price + 20 * int(trump)
+
+# Функции сравнения
+# Карта меньше другой
+func lt(other: Card) -> bool: return _get_price() < other._get_price()
+
+# Карта больше другой
+func mt(other: Card) -> bool: return _get_price() > other._get_price()
+
+# Равенство масти
+func es(other: Card) -> bool: return suit == other.suit
+
+# Прочие функции
 # Отображение цены и масти карты
 func _set_price_suit(idx: int) -> void:
 	for i in [v1, v2]:
@@ -68,16 +82,17 @@ func _on_mouse(entered: bool = true) -> void:
 		if entered and position.y >= get_parent().height: get_parent().hovered_cards.append(get_index())
 		elif not entered and get_index() in get_parent().hovered_cards: get_parent().unhovered_cards.append(get_index())
 
-# Запуск анимации
+# Работа с анимациями
+# Запуск
 func start_anim(anim_name: String, backward: bool = false) -> void:
 	$Control/AnimationPlayer.play(anim_name, -1, [1., -1.][int(backward)], backward)
 
-# Старт анимации поворота
+# Сигнал начала
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
 	if anim_name == "fall":
 		modulate.a = 0.
 		rotate_data = [true, randf_range(0., TAU)]
 
-# Сигнал завершения анимации
+# Сигнал завершения
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "hide": Global.delete_child(get_parent(), self)
