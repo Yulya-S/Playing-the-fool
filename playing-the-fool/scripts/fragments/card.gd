@@ -79,10 +79,13 @@ func hide_card() -> void:
 # Перемещение карты
 func transfer(height: float) -> void: new_pos = Vector2(position.x, height)
 
+# Остановка определения наведения курсора мыши на карту
+func mouse_treatments(stop: bool) -> void: $Control.mouse_filter = Control.MOUSE_FILTER_IGNORE if stop else Control.MOUSE_FILTER_STOP
+
 # Обработка наведения курсора мыши
 func _on_mouse(entered: bool = true) -> void:
-	if get_parent().name == "Hand" and Global.game_state == Global.GameStates.PLAY:
-		if entered and position.y >= get_parent().height: get_parent().hovered_cards.append(get_index())
+	if get_parent().name in ["Hand", "Table"] and Global.game_state == Global.GameStates.PLAY:
+		if entered and (get_parent().name == "Table" or position.y >= get_parent().height): get_parent().hovered_cards.append(get_index())
 		elif not entered and get_index() in get_parent().hovered_cards: get_parent().unhovered_cards.append(get_index())
 
 # Работа с анимациями

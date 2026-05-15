@@ -18,8 +18,11 @@ func _process(_delta: float) -> void:
 
 # Обработка нажатия на карту
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("click") and len(hovered_cards) > 0: clicked = hovered_cards.max()
+	if event.is_action_pressed("click") and len(hovered_cards) > 0:
+		clicked = hovered_cards.max()
+		get_child(clicked).mouse_treatments(true)
 	elif event.is_action_released("click") and clicked != -1:
+		get_child(clicked).mouse_treatments(false)
 		if get_child(clicked) == null: return
 		if not Table.mouse_hover() or not Table.add_card(get_child(clicked)):
 			get_child(clicked).position = get_child(clicked).new_pos
