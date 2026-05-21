@@ -27,15 +27,18 @@ func _process(delta: float) -> void:
 	if new_pos != position and get_parent().name not in ["Cards", "Animation"]:
 		position = position.move_toward(new_pos, (1000.0 if new_pos.y != position.y else 500.0) * delta)
 
+# Вывод значения карты в понятном виде
+func _to_string() -> String: return str(price) + " " + str(suit)
+
 # Получение "реальной" цены карты
 func _get_price() -> int: return price + 20 * int(trump)
 
 # Функции сравнения
 # Карта меньше другой
-func lt(other: Card) -> bool: return _get_price() < other._get_price()
+func lt(other: Card) -> bool: return price < other.price or suit != other.suit
 
 # Карта больше другой
-func mt(other: Card) -> bool: return _get_price() > other._get_price()
+func mt(other: Card) -> bool: return (price >= other.price and suit == other.suit) or (trump and not other.trump)
 
 # Равенство масти
 func es(other: Card) -> bool: return suit == other.suit

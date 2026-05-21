@@ -25,7 +25,7 @@ func add_card(card: Node) -> bool:
 		get_child(-1).rotate_data = [true, randf_range(-0.2, 0.2)]
 		get_child(-1).new_pos = get_child(-1).position
 		return true
-	elif Global.player and len(hovered_cards) > 0:
+	elif Global.player and len(hovered_cards) > 0 and card.mt(get_child(hovered_cards.max())):
 		if len(card_prices) == 0: card_prices.append(card.price)
 		card.reparent(self)
 		get_child(-1).rotate_data = [true, randf_range(-0.2, 0.2)]
