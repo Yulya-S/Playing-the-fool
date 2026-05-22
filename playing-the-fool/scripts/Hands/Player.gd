@@ -24,7 +24,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_released("click") and clicked != -1:
 		get_child(clicked).mouse_treatments(false)
 		if get_child(clicked) == null: return
-		if not Table.mouse_hover() or not Table.add_card(get_child(clicked)):
+		if not Table.zone_hovered or not Table.add_card(get_child(clicked)):
 			get_child(clicked).position = get_child(clicked).new_pos
 		else:
 			Table.get_child(-1).start_anim("growth", true)

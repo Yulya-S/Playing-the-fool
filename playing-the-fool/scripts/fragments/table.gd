@@ -1,22 +1,16 @@
 extends Control
 # Переменная
+var zone_hovered: bool = false # Определение курсора мыши в зоне стола
+# Данные карт
 var card_prices: Array = [] # Значения карт на столе
-var hovered_cards: Array = []
-var unhovered_cards: Array = []
+var hovered_cards: Array = [] # Карты под наведением
+var unhovered_cards: Array = [] # Карты, с которых наведение снято
 
-# Проверка находится ли курсор мыши в зоне стола
-func mouse_hover() -> bool:
-	var mouse_pos: Vector2 = get_viewport().get_mouse_position()
-	return _check_pos(mouse_pos, 0) and _check_pos(mouse_pos, 1)
-
+# Обработка карт на столе на которые наведена мышь
 func _process(delta: float) -> void:
 	hovered_cards = hovered_cards.filter(func(item): return item not in unhovered_cards)
 	unhovered_cards = []
-
-# Общая часть проверки позиции курсора мыши
-func _check_pos(mouse_pos: Vector2, idx: int) -> bool:
-	return mouse_pos[idx] > position[idx] and mouse_pos[idx] < position[idx] + size[idx]
-
+	
 # Сброс карты на стол, во время хода игрока
 func add_card(card: Node) -> bool:
 	if not Global.player and (len(card_prices) == 0 or card.price in card_prices):
@@ -32,3 +26,6 @@ func add_card(card: Node) -> bool:
 		get_child(-1).new_pos = get_child(-1).position
 		return true
 	return false
+
+# Изменение состояния наведения курсора мыши на зону стола
+func _on_mouse(hovered: bool) -> void: zone_hovered = hovered
