@@ -83,7 +83,7 @@ func hide_card() -> void:
 func transfer(height: float) -> void: new_pos = Vector2(position.x, height)
 
 # Остановка определения наведения курсора мыши на карту
-func mouse_treatments(stop: bool) -> void: $Control.mouse_filter = Control.MOUSE_FILTER_IGNORE if stop else Control.MOUSE_FILTER_STOP
+func mouse_treatments(stop_processing: bool) -> void: $Control.mouse_filter = Control.MOUSE_FILTER_IGNORE if stop_processing else Control.MOUSE_FILTER_STOP
 
 # Обработка наведения курсора мыши
 func _on_mouse(entered: bool = true) -> void:

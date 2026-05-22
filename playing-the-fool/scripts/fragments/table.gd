@@ -7,7 +7,7 @@ var hovered_cards: Array = [] # Карты под наведением
 var unhovered_cards: Array = [] # Карты, с которых наведение снято
 
 # Обработка карт на столе на которые наведена мышь
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	hovered_cards = hovered_cards.filter(func(item): return item not in unhovered_cards)
 	unhovered_cards = []
 	
