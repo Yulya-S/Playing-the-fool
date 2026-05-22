@@ -1,10 +1,11 @@
 extends GameWindow
-# Путь к объекту в сцене
+# Пути к объектам в сцене
 @onready var Language = $Language
+@onready var Picker = $ColorPicker
 
 # Применение цвета
 func _ready() -> void:
-	$ColorPicker.color = Color("#"+Global.config.background_color)
+	Picker.color = Color("#"+Global.config.background_color)
 	$DeckType.selected = Global.config.card_pack
 	# Заполнение списка языков для выбора
 	for i in DirAccess.get_files_at("res://data/lang/"):
@@ -27,5 +28,6 @@ func _on_deck_type_item_selected(index: int) -> void: _save_config("card_pack", 
 
 # Изменение цвета фона
 func _on_color_picker_color_changed(color: Color) -> void:
+	Picker.color = color
 	Global.main.get_child(0).modulate = color
 	_save_config("background_color", color.to_html())
