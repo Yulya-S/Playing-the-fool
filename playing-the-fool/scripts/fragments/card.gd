@@ -74,13 +74,13 @@ func mouse_treatments(stop_processing: bool) -> void: $Control.mouse_filter = Co
 # Обработка наведения курсора мыши
 func _on_mouse(entered: bool = true) -> void:
 	if get_parent().name in ["Hand", "Table"] and Global.game_state == Global.GameStates.PLAY:
-		if entered and (get_parent().name == "Table" or position.y >= get_parent().height): get_parent().hov_unhov.add(self)
-		elif not entered: get_parent().hov_unhov.array_filter(func(item): return item != get_index())
+		if not entered: get_parent().hov_unhov.array_filter(func(item): return item != get_index())
+		else: get_parent().hov_unhov.add(self)
 
 # Работа с анимациями
 # Запуск
 func start_anim(anim_name: String, backward: bool = false) -> void:
-	$Control/AnimationPlayer.play(anim_name, -1, [1., -1.][int(backward)], backward)
+	$Control/AnimationPlayer.play(anim_name, -1, -1 if backward else 1, backward)
 
 # Сигнал начала
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
