@@ -14,8 +14,8 @@ func add_card() -> void:
 	Global.deck.Cards.get_child(-1).reparent(self)
 	get_child(-1).transfer(height)
 	get_child(-1).rotation = 0.0
-	if not show_card: get_child(-1).hide_card()
-	else: get_child(-1).start_anim("growth")
+	get_child(-1).show_hide(show_card)
+	if show_card: get_child(-1).start_anim("growth")
 	_map_shift()
 
 # Изменение позиции карты

@@ -1,8 +1,8 @@
 extends AnimatedSprite2D
 class_name Card
 # Пути к объектам в сцене
-@onready var v1 = $Value1
-@onready var v2 = $Value2
+@onready var v1 = $CardValue1
+@onready var v2 = $CardValue2
 # Переменные
 var suit: int = 0 # Масть
 var price: int = 0 # Цена
@@ -30,27 +30,17 @@ func _process(delta: float) -> void:
 # Вывод значения карты в понятном виде
 func _to_string() -> String: return str(price) + " " + str(suit)
 
-# Получение "реальной" цены карты
-func _get_price() -> int: return price + 20 * int(trump)
-
-# Функции сравнения
-# Карта меньше другой
-func lt(other: Card) -> bool: return price < other.price or suit != other.suit
-
-# Карта больше другой
+# Проверка что карта больше другой
 func mt(other: Card) -> bool: return (price >= other.price and suit == other.suit) or (trump and not other.trump)
-
-# Равенство масти
-func es(other: Card) -> bool: return suit == other.suit
 
 # Прочие функции
 # Отображение цены и масти карты
 func _set_price_suit(idx: int) -> void:
 	for i in [v1, v2]:
+		var value: int = int(idx / 4. + 6.)
 		i.get_child(1).frame = idx % 4
-		i.get_child(0).set_text(str(int(idx / 4. + 6.)))
-		if int(idx / 4. + 6.) > 10:
-			i.get_child(0).set_text(tr(["_J", "_Q", "_K","_A"][int(idx / 4. + 6.) - 11]))
+		i.get_child(0).set_text(str(value))
+		if value > 10: i.get_child(0).set_text(tr(["_J", "_Q", "_K","_A"][value - 11]))
 
 # Изменение текстуры карты
 func set_new_frame(idx: int) -> void:
@@ -62,22 +52,18 @@ func set_value(idx: int) -> void:
 	_set_price_suit(idx)
 	price = int(idx / 4. + 6.)
 	suit = idx % 4
-	hide_card()
+	show_hide(false)
 	if get_parent().get_child_count() == 1:
 		rotation_degrees = 90
 		position.x += 25
-		show_card()
+		show_hide()
 		trump = true
 	elif get_parent().get_child(0).suit == suit: trump = true
 
-# Переворот карты
-func show_card() -> void:
-	frame = (price - 6) * 4 + suit
-	for i in [v1, v2]: i.visible = true
-
-func hide_card() -> void:
-	frame = 40
-	for i in [v1, v2]: i.visible = false
+# Поворот карты (значением вверх, шапкой вверх)
+func show_hide(show_card: bool = true) -> void:
+	frame = ((price - 6) * 4 + suit) if show_card else 40
+	for i in [v1, v2]: i.visible = show_card
 
 # Перемещение карты
 func transfer(height: float) -> void: new_pos = Vector2(position.x, height)
@@ -88,8 +74,8 @@ func mouse_treatments(stop_processing: bool) -> void: $Control.mouse_filter = Co
 # Обработка наведения курсора мыши
 func _on_mouse(entered: bool = true) -> void:
 	if get_parent().name in ["Hand", "Table"] and Global.game_state == Global.GameStates.PLAY:
-		if entered and (get_parent().name == "Table" or position.y >= get_parent().height): get_parent().hovered_cards.append(get_index())
-		elif not entered and get_index() in get_parent().hovered_cards: get_parent().unhovered_cards.append(get_index())
+		if entered and (get_parent().name == "Table" or position.y >= get_parent().height): get_parent().hov_unhov.add(self)
+		elif not entered: get_parent().hov_unhov.array_filter(func(item): return item != get_index())
 
 # Работа с анимациями
 # Запуск
