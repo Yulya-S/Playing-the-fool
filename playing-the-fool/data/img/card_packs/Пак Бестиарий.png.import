@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyd8628swkuj5"
-path="res://.godot/imported/Карты Фентези.png-45ef58683de4289cba7dc6eae9b89d40.ctex"
+uid="uid://c0f8xda1jpc2"
+path="res://.godot/imported/Пак Бестиарий.png-f561ff1337cffaaa9808c305246a833a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/img/card_packs/Карты Фентези.png"
-dest_files=["res://.godot/imported/Карты Фентези.png-45ef58683de4289cba7dc6eae9b89d40.ctex"]
+source_file="res://data/img/card_packs/Пак Бестиарий.png"
+dest_files=["res://.godot/imported/Пак Бестиарий.png-f561ff1337cffaaa9808c305246a833a.ctex"]
 
 [params]
 
