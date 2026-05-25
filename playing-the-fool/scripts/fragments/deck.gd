@@ -1,17 +1,16 @@
 extends Node2D
 # Пути к объектам в сцене
-@onready var CardsCount = $CardsCount
 @onready var DeckTimer = $Timer
 @onready var Cards = $Cards
 # Участники игры
 @onready var Player = $"../Hand"
 @onready var CI = $"../Computer"
-# Переменные
-var card: Resource = load("res://scenes/fragments/card.tscn") # Путь к сцене карты
+# Переменная
 var user_idx: bool = true # Порядок передачи карты
 
 # Создание сцены
 func _ready() -> void:
+	var card: Resource = load("res://scenes/fragments/card.tscn") # Путь к сцене карты
 	Global.deck = self
 	# Создание и перемешивание калоды
 	var card_array: Array = Array(range(0, 36))
@@ -37,4 +36,4 @@ func _on_timer_timeout() -> void:
 	user_idx = not user_idx
 	if CI.cards_enough(): user_idx = true
 	elif Player.cards_enough(): user_idx = false
-	CardsCount.set_text(str(Cards.get_child_count()))
+	$CardsCount.set_text(str(Cards.get_child_count()))
