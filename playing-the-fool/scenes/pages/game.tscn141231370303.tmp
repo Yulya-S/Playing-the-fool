@@ -1,0 +1,268 @@
+[gd_scene load_steps=19 format=3 uid="uid://yk6gbargmxh5"]
+
+[ext_resource type="Script" uid="uid://b3qqbfont2jp2" path="res://scripts/fragments/deck.gd" id="1_773x0"]
+[ext_resource type="Script" uid="uid://ij3ltfidj7l8" path="res://scripts/pages/game.gd" id="1_qlvyt"]
+[ext_resource type="Texture2D" uid="uid://biqd5kwm04uh1" path="res://data/img/icons/right.png" id="3_773x0"]
+[ext_resource type="Texture2D" uid="uid://h8pnp4jeohq3" path="res://data/img/suits.png" id="3_hm6wi"]
+[ext_resource type="Script" uid="uid://cr5t1jwrb3u6n" path="res://scripts/Hands/CI.gd" id="5_5is8n"]
+[ext_resource type="Script" uid="uid://b8ge4qi36pnxf" path="res://scripts/fragments/table.gd" id="5_hm6wi"]
+[ext_resource type="Script" uid="uid://lfe3evc0ov1u" path="res://scripts/Hands/Player.gd" id="6_jl74o"]
+[ext_resource type="Script" uid="uid://cv3y2qsx48bj7" path="res://scripts/fragments/first_move_determination.gd" id="6_ut5xk"]
+[ext_resource type="Texture2D" uid="uid://cig8bof0nebh1" path="res://data/img/icons/arrow.png" id="7_hm6wi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oskku"]
+atlas = ExtResource("3_hm6wi")
+region = Rect2(0, 0, 38, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbxwm"]
+atlas = ExtResource("3_hm6wi")
+region = Rect2(38, 0, 38, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0cbv"]
+atlas = ExtResource("3_hm6wi")
+region = Rect2(76, 0, 38, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hxe8"]
+atlas = ExtResource("3_hm6wi")
+region = Rect2(114, 0, 38, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5is8n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oskku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbxwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0cbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hxe8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_kt16h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jl74o"]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ut5xk"]
+resource_name = "show"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jl74o"]
+_data = {
+&"RESET": SubResource("Animation_kt16h"),
+&"hide": SubResource("Animation_jl74o"),
+&"show": SubResource("Animation_ut5xk")
+}
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_qlvyt")
+
+[node name="CICardsCount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1029.0
+offset_top = 31.0
+offset_right = 1121.0
+offset_bottom = 169.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Deck" type="Node2D" parent="."]
+position = Vector2(69, 102)
+script = ExtResource("1_773x0")
+
+[node name="CardsCount" type="Label" parent="Deck"]
+offset_left = 26.0
+offset_top = -69.0
+offset_right = 118.0
+offset_bottom = 69.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "36"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Suit" type="AnimatedSprite2D" parent="Deck"]
+position = Vector2(179, -1.90735e-06)
+scale = Vector2(2.25326, 2.25326)
+sprite_frames = SubResource("SpriteFrames_5is8n")
+
+[node name="Cards" type="Node2D" parent="Deck"]
+position = Vector2(179, 0)
+
+[node name="Timer" type="Timer" parent="Deck"]
+wait_time = 0.1
+autostart = true
+
+[node name="Table" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 211.0
+offset_right = 1114.0
+offset_bottom = 484.0
+script = ExtResource("5_hm6wi")
+
+[node name="Computer" type="Node2D" parent="."]
+script = ExtResource("5_5is8n")
+start_pos = 400.0
+max_weight = 600.0
+show_card = false
+
+[node name="Hand" type="Node2D" parent="."]
+script = ExtResource("6_jl74o")
+height = 650.0
+start_pos = 146.0
+max_weight = 600.0
+
+[node name="Dropping" type="Button" parent="."]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 575.0
+offset_right = 1144.0
+offset_bottom = 638.0
+theme_override_font_sizes/font_size = 40
+disabled = true
+
+[node name="FirstMoveDetermination" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.34902)
+
+[node name="Label" type="Label" parent="FirstMoveDetermination"]
+layout_mode = 0
+offset_top = 142.0
+offset_right = 1152.0
+offset_bottom = 211.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "_DETERMINE"
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Line2D" type="Line2D" parent="FirstMoveDetermination/Label"]
+position = Vector2(0, -142)
+points = PackedVector2Array(0, 324, 1152, 324)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Arrow" type="Sprite2D" parent="FirstMoveDetermination"]
+position = Vector2(576, 324)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_hm6wi")
+script = ExtResource("6_ut5xk")
+
+[node name="Result" type="Label" parent="FirstMoveDetermination"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_top = 439.0
+offset_right = 1152.0
+offset_bottom = 508.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.994273, 0, 0.201686, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "_FIRST"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="FirstMoveDetermination/Result"]
+layout_mode = 0
+offset_top = -55.0
+offset_right = 1152.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 40
+text = "_FIRST"
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FirstMoveDetermination/Result"]
+libraries = {
+&"": SubResource("AnimationLibrary_jl74o")
+}
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 148.0
+offset_bottom = 148.0
+scale = Vector2(0.6, 0.6)
+icon = ExtResource("3_773x0")
+
+[connection signal="timeout" from="Deck/Timer" to="Deck" method="_on_timer_timeout"]
+[connection signal="mouse_entered" from="Table" to="Table" method="_on_mouse" binds= [true]]
+[connection signal="mouse_exited" from="Table" to="Table" method="_on_mouse" binds= [false]]
+[connection signal="button_down" from="Dropping" to="." method="_on_dropping_button_down"]
+[connection signal="animation_finished" from="FirstMoveDetermination/Result/AnimationPlayer" to="FirstMoveDetermination/Arrow" method="_on_animation_player_animation_finished"]
+[connection signal="button_down" from="Back" to="." method="_on_window_button_down"]

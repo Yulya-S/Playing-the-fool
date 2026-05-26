@@ -14,4 +14,6 @@ func set_stage(state: Global.GameStates) -> void:
 		if Global.player: $Computer.shot()
 
 # Обработка нажатия на кнопку завершения хода игрока
-func _on_dropping_button_down() -> void: if $Table.get_child_count() == 0: return
+func _on_dropping_button_down() -> void:
+	if $Table.get_child_count() == 0: return
+	if Global.player: $Hand.taking_cards()
