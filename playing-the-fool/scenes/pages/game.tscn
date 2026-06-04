@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://yk6gbargmxh5"]
+[gd_scene load_steps=22 format=3 uid="uid://yk6gbargmxh5"]
 
 [ext_resource type="Script" uid="uid://b3qqbfont2jp2" path="res://scripts/fragments/deck.gd" id="1_773x0"]
 [ext_resource type="Script" uid="uid://ij3ltfidj7l8" path="res://scripts/pages/game.gd" id="1_qlvyt"]
@@ -9,6 +9,67 @@
 [ext_resource type="Script" uid="uid://lfe3evc0ov1u" path="res://scripts/Hands/Player.gd" id="6_jl74o"]
 [ext_resource type="Script" uid="uid://cv3y2qsx48bj7" path="res://scripts/fragments/first_move_determination.gd" id="6_ut5xk"]
 [ext_resource type="Texture2D" uid="uid://cig8bof0nebh1" path="res://data/img/icons/arrow.png" id="7_hm6wi"]
+
+[sub_resource type="Animation" id="Animation_2tgxu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5is8n"]
+resource_name = "show_CISay"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ol4lx"]
+_data = {
+&"RESET": SubResource("Animation_2tgxu"),
+&"show_CISay": SubResource("Animation_5is8n")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oskku"]
 atlas = ExtResource("3_hm6wi")
@@ -131,6 +192,27 @@ theme_override_font_sizes/font_size = 50
 text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="CISay" type="Label" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 291.0
+offset_top = 122.0
+offset_right = 1152.0
+offset_bottom = 177.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 40
+text = "_CIMESSAGE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CISay"]
+libraries = {
+&"": SubResource("AnimationLibrary_ol4lx")
+}
 
 [node name="Deck" type="Node2D" parent="."]
 position = Vector2(69, 102)
