@@ -7,8 +7,11 @@ var hov_unhov: HovUnhov = HovUnhov.new() # Карты в наведении
 
 # Сброс карты на стол, во время хода игрока
 func add_card(card: Node) -> bool:
-	if (not Global.player and zone_hovered and (len(card_prices) == 0 or card.price in card_prices)) or \
-		(Global.player and hov_unhov.count() and card.mt(get_child(hov_unhov.max_hov()))):
+	if not Global.player and zone_hovered and (len(card_prices) == 0 or card.price in card_prices):
+		return _reparent(card)
+	elif Global.player and hov_unhov.count() and card.mt(get_child(hov_unhov.max_hov())):
+		card.attack = false
+		get_child(hov_unhov.max_hov()).security_card = true
 		return _reparent(card)
 	return false
 

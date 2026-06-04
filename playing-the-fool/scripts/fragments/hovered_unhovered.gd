@@ -4,7 +4,9 @@ class_name HovUnhov
 var hovered_cards: Array = [] # Карты под курсором мыши
 
 # Добавление элемента в список
-func add(obj) -> void: hovered_cards.append(obj.get_index())
+func add(obj) -> void:
+	if obj.security_card or not obj.attack: return
+	hovered_cards.append(obj.get_index())
 
 # Получение карты у родителя
 func get_card(obj) -> Node: return obj.get_child(max_hov())
