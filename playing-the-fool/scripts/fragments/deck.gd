@@ -24,16 +24,14 @@ func _ready() -> void:
 
 # Включение и отключение таймера раздачи карт
 func _process(_delta: float) -> void:
-	if Global.game_state == Global.GameStates.DISTRIBUTION:
-		if DeckTimer.paused: DeckTimer.start()
-		elif (Player.cards_enough() and CI.cards_enough()) or Cards.get_child_count() == 0:
+	if Global.game_state == Global.GameStates.DISTRIBUTION and ((Player.cards_enough() and CI.cards_enough()) or Cards.get_child_count() == 0):
 			get_parent().set_stage(Global.GameStates.PLAY)
-			DeckTimer.stop()
 
 # Раздача карт
 func _on_timer_timeout() -> void:
+	if CI.cards_enough() and Player.cards_enough(): return
+	elif CI.cards_enough(): user_idx = true
+	elif Player.cards_enough(): user_idx = false
 	(Player if user_idx else CI).add_card()
 	user_idx = not user_idx
-	if CI.cards_enough(): user_idx = true
-	elif Player.cards_enough(): user_idx = false
 	$CardsCount.set_text(str(Cards.get_child_count()))
