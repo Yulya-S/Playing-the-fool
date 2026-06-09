@@ -26,6 +26,7 @@ func _update_card_pos() -> void:
 func taking_cards() -> void:
 	for i in $"../Table".get_children():
 		i.reparent(self)
+		i.rotate_data = [true, 0]
 		_update_card_pos()
 
 # Изменение позиции карты
