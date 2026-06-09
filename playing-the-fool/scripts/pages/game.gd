@@ -19,4 +19,5 @@ func set_stage(state: Global.GameStates) -> void:
 func _on_dropping_button_down() -> void:
 	if $Table.get_child_count() == 0: return
 	if Global.player: $Hand.taking_cards()
+	elif $CISay.visible: $Computer.taking_cards()
 	set_stage(Global.GameStates.DISTRIBUTION)
