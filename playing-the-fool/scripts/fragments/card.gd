@@ -30,6 +30,9 @@ func _process(delta: float) -> void:
 # Вывод значения карты в понятном виде
 func _to_string() -> String: return str(price) + " " + str(suit)
 
+# Получение реального значения карты (цена + козырность карты)
+func real_price() -> int: return price + ( 15 if trump else 0)
+
 # Проверка что карта больше другой
 func mt(other: Card) -> bool: return (price >= other.price and suit == other.suit) or (trump and not other.trump)
 
