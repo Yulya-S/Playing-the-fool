@@ -9,6 +9,9 @@ class_name Hand
 # Проверка что в руке карт больше 6
 func cards_enough() -> bool: return get_child_count() >= 6
 
+# Проверка что рука пуста
+func empty() -> bool: return get_child_count() == 0
+
 # Добавление карты в руку
 func add_card() -> void:
 	Global.deck.Cards.get_child(-1).reparent(self)

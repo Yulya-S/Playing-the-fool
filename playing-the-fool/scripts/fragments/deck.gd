@@ -35,3 +35,6 @@ func _on_timer_timeout() -> void:
 	(Player if user_idx else CI).add_card()
 	user_idx = not user_idx
 	$CardsCount.set_text(str(Cards.get_child_count()))
+
+# Получение количества оставшихся в колоде карт
+func card_count() -> int: return Cards.get_child_count()

@@ -27,7 +27,7 @@ func find_min(card: Node) -> Node:
 	return select_card
 
 func shot() -> void:
-	if get_child(0) == null: return
+	if get_child_count() == 0 or get_child(0) == null: return
 	get_child(0).reparent(Table)
 	Table.get_child(0).new_pos = Vector2(100 + randi() % 874, 130)
 	Table.get_child(0).show_hide()
