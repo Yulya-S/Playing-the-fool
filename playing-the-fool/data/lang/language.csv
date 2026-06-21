@@ -6,6 +6,7 @@ _MOVES	Number of moves	Количество ходов
 _COUNT	Number of cards	Количество карт
 __USER0	Player	Игрок
 __USER1	Computer	Компьютер
+__USER2	Draw	Ничья
 _DETERMINE	We determine the order of the moves	Определяем порядок хода
 _FIRST	Goes first	Первым ходит
 _J	J	В
@@ -14,7 +15,7 @@ _K	K	К
 _A	A	Т
 _ATTACK	Beaten	Бита
 _PROTECT	Take	Забрать
-_GIVE_AWAY	Give away 	Отдать
+_GIVE_AWAY	Give away	Отдать
 _CIMESSAGE	The computer wants to pick up the cards	Компьютер хочет забрать карты
 _SETTINGS	Settings	Настройки
 _LANGUAGE	Language:	Язык:

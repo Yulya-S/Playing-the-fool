@@ -46,7 +46,7 @@ func create_config() -> void:
 func save_config() -> void: _store_json(conf_file_path, config)
 
 # Сохранение данных статистики в файл
-func save_stats(moves: int, winner: bool, cards_count: int) -> void:
+func save_stats(moves: int, winner: int, cards_count: int) -> void:
 	var data: Array = read_file(stats_file_path)
 	data.append({"moves": moves, "winner": winner, "cards_count": cards_count})
 	_store_json(stats_file_path, data)
