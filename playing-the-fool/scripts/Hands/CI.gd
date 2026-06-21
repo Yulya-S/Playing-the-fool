@@ -20,10 +20,10 @@ func _process(_delta: float) -> void:
 					select_card.new_pos = Vector2(i.position.x+10, i.position.y+20)
 					select_card.rotate_data = [true, 0]
 	elif Global.game_state != Global.GameStates.DISTRIBUTION:
-		if $"../Table".get_child_count() == 0: _shot()
+		if Table.get_child_count() == 0: _shot()
 		else:
 			var end: bool = true
-			for i in $"../Table".get_children():
+			for i in Table.get_children():
 				if i.attack and not i.security_card:
 					end = false
 					break
