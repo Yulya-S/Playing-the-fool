@@ -1,4 +1,6 @@
 extends GameWindow
+# Переменная
+var steps: int = 0 # Счетчик ходов для статистики
 
 # Старт раздачи карт
 func _ready() -> void: set_stage(Global.GameStates.DISTRIBUTION)
@@ -13,6 +15,7 @@ func set_stage(state: Global.GameStates) -> void:
 	Global.game_state = state
 	Global.deck.get_child(-1).paused = state == Global.GameStates.PLAY
 	if state == Global.GameStates.PLAY: $Dropping.set_text(tr(["_ATTACK", "_PROTECT"][int(Global.player)]))
+	else: steps += 1
 	Global.table.card_prices = []
 
 # Завершение хода и начало следующего
