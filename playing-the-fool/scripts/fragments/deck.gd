@@ -29,6 +29,7 @@ func _process(_delta: float) -> void:
 
 # Раздача карт
 func _on_timer_timeout() -> void:
+	if Cards.get_child_count() <= 24: user_idx = Global.player
 	if CI.cards_enough() and Player.cards_enough(): return
 	elif CI.cards_enough(): user_idx = true
 	elif Player.cards_enough(): user_idx = false
