@@ -26,7 +26,9 @@ func _process(_delta: float) -> void:
 				if i.attack and not i.security_card:
 					end = false
 					break
-			if end: $"..".next_step()
+			if end:
+				$"..".set_stage(Global.GameStates.DISTRIBUTION)
+				$"..".next_step()
 	_map_shift()
 
 # Очистка состояний по окончанию хода
