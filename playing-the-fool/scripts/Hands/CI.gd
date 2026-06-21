@@ -6,19 +6,38 @@ var end_step: bool = false
 
 # Отображение количества карт в руке у компьютера
 func _process(_delta: float) -> void:
-	if not Global.player and not end_step and Table.get_child_count() > 0:
-		for i in Table.get_children():
-			if not i.security_card and i.attack:
-				var select_card: Node = find_min(i)
-				if select_card == null:
-					$"../CISay/AnimationPlayer".play("show_CISay")
-					end_step = true
-					return
-				else:
-					Table.set_secur(select_card, i)
-					select_card.new_pos = Vector2(i.position.x+10, i.position.y+20)
-					select_card.rotate_data = [true, 0]
+	if Global.game_state == Global.GameStates.PLAY: $"../CICardsCount".set_text(str(get_child_count()))
+	if not Global.player:
+		if not end_step and Table.get_child_count() > 0:
+			for i in Table.get_children():
+				if not i.security_card and i.attack:
+					var select_card: Node = find_min(i)
+					if select_card == null:
+						$"../CISay/AnimationPlayer".play("show_CISay")
+						end_step = true
+						return
+					else:
+						Table.set_secur(select_card, i)
+						select_card.new_pos = Vector2(i.position.x+10, i.position.y+20)
+						select_card.rotate_data = [true, 0]
+	elif Global.game_state != Global.GameStates.DISTRIBUTION:
+		if $"../Table".get_child_count() == 0: shot()
+		else:
+			var end: bool = true
+			for i in $"../Table".get_children():
+				if i.attack and not i.security_card:
+					end = false
+					break
+			if end: $"..".next_step()
+	_map_shift()
 
+# Очистка состояний по окончанию хода
+func taking_cards() -> void:
+	super.taking_cards()
+	end_step = false
+	$"../CISay".visible = false
+
+# Поиск карты с наименьшей ценой в руке компьютера
 func find_min(card: Node) -> Node:
 	var select_card: Node = null
 	for i in get_children():
@@ -26,6 +45,7 @@ func find_min(card: Node) -> Node:
 			select_card = i
 	return select_card
 
+# Ход компьютера
 func shot() -> void:
 	if get_child_count() == 0 or get_child(0) == null: return
 	get_child(0).reparent(Table)

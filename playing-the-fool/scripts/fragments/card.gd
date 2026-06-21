@@ -73,6 +73,7 @@ func mouse_treatments(stop_processing: bool) -> void: $Control.mouse_filter = Co
 
 # Обработка наведения курсора мыши
 func _on_mouse(entered: bool = true) -> void:
+	if new_pos.x != position.x: return
 	if get_parent().name in ["Hand", "Table"] and Global.game_state == Global.GameStates.PLAY:
 		if not entered: get_parent().hov_unhov.array_filter(func(item): return item != get_index())
 		else: get_parent().hov_unhov.add(self)

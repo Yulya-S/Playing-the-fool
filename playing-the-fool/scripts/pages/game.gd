@@ -16,12 +16,21 @@ func set_stage(state: Global.GameStates) -> void:
 	if state == Global.GameStates.PLAY:
 		$Deck/Timer.stop()
 		Dropping.set_text(tr(["_ATTACK", "_PROTECT"][int(Global.player)]))
-		if Global.player: $Computer.shot()
 	else: $Deck/Timer.start()
+	$Table.card_prices = []
+
+# Завершение хода и начало следующего
+func next_step() -> void:
+	for i in $Table.get_children(): Global.delete_child($Table, i)
+	set_stage(Global.GameStates.DISTRIBUTION)
+	Global.player = not Global.player
 
 # Обработка нажатия на кнопку завершения хода игрока
 func _on_dropping_button_down() -> void:
-	if $Table.get_child_count() == 0 and Global.game_state != Global.GameStates.PLAY: return
+	if $Table.get_child_count() == 0 or Global.game_state != Global.GameStates.PLAY: return
 	if Global.player: $Hand.taking_cards()
 	elif $CISay.visible: $Computer.taking_cards()
+	else:
+		next_step()
+		return
 	set_stage(Global.GameStates.DISTRIBUTION)
