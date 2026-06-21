@@ -10,13 +10,17 @@ func add_card(card: Node) -> bool:
 	if not Global.player and zone_hovered and (len(card_prices) == 0 or card.price in card_prices):
 		return _reparent(card)
 	elif Global.player and hov_unhov.count() and card.mt(get_child(hov_unhov.max_hov())):
-		card.attack = false
-		get_child(hov_unhov.max_hov()).security_card = true
-		return _reparent(card)
+		return set_secur(card, hov_unhov.max_hov())
 	return false
+
+func set_secur(secure, attack) -> bool:
+	secure.attack = false
+	attack.security_card = true
+	return _reparent(secure)
 
 # Сброс карты на стол
 func _reparent(card: Card) -> bool:
+	card.show_hide()
 	if card.price not in card_prices: card_prices.append(card.price)
 	card.reparent(self)
 	get_child(-1).rotate_data = [true, randf_range(-0.2, 0.2)]

@@ -1,13 +1,33 @@
 extends Hand
+# Путь к объекту в сцене
+@onready var Table = $"../Table"
+# Переменная
+var end_step: bool = false
 
 # Отображение количества карт в руке у компьютера
 func _process(_delta: float) -> void:
-	$"../CICardsCount".set_text(str(get_child_count()))
-	if not Global.player and $"../Table".get_child_count() > 0 and not $"../CISay/".visible:
-		$"../CISay/AnimationPlayer".play("show_CISay")
+	if not Global.player and not end_step and Table.get_child_count() > 0:
+		for i in Table.get_children():
+			if not i.security_card and i.attack:
+				var select_card: Node = find_min(i)
+				if select_card == null:
+					$"../CISay/AnimationPlayer".play("show_CISay")
+					end_step = true
+					return
+				else:
+					Table.set_secur(select_card, i)
+					select_card.new_pos = Vector2(i.position.x+10, i.position.y+20)
+					select_card.rotate_data = [true, 0]
+
+func find_min(card: Node) -> Node:
+	var select_card: Node = null
+	for i in get_children():
+		if i.mt(card) and (select_card == null or select_card.mt(i)):
+			select_card = i
+	return select_card
 
 func shot() -> void:
 	if get_child(0) == null: return
-	get_child(0).reparent($"../Table")
-	$"../Table".get_child(0).new_pos = Vector2(100 + randi() % 874, 130)
-	$"../Table".get_child(0).show_hide()
+	get_child(0).reparent(Table)
+	Table.get_child(0).new_pos = Vector2(100 + randi() % 874, 130)
+	Table.get_child(0).show_hide()
