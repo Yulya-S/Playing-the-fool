@@ -27,7 +27,7 @@ func _update_card_pos() -> void:
 
 # Забрать карты со стола
 func taking_cards() -> void:
-	for i in $"../Table".get_children():
+	for i in Global.table.get_children():
 		i.reparent(self)
 		i.rotate_data = [true, 0]
 		_update_card_pos()

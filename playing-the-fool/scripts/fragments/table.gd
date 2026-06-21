@@ -5,6 +5,9 @@ var zone_hovered: bool = false # Определение курсора мыши 
 var card_prices: Array = [] # Значения карт на столе
 var hov_unhov: HovUnhov = HovUnhov.new() # Карты в наведении
 
+# Сохранения стола как глобального элемента
+func _ready() -> void: Global.table = self
+
 # Сброс карты на стол, во время хода игрока
 func add_card(card: Node) -> bool:
 	if not Global.player and zone_hovered and (len(card_prices) == 0 or card.price in card_prices):

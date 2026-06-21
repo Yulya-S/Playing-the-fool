@@ -1,6 +1,4 @@
 extends Hand
-# Путь к объекту в сцене
-@onready var Table = $"../Table"
 # Переменная
 var end_step: bool = false
 
@@ -8,8 +6,8 @@ var end_step: bool = false
 func _process(_delta: float) -> void:
 	if Global.game_state == Global.GameStates.PLAY: $"../CICardsCount".set_text(str(get_child_count()))
 	if not Global.player:
-		if not end_step and Table.get_child_count() > 0:
-			for i in Table.get_children():
+		if not end_step and Global.table.get_child_count() > 0:
+			for i in Global.table.get_children():
 				if not i.security_card and i.attack:
 					var select_card: Node = find_min(i)
 					if select_card == null:
@@ -17,14 +15,14 @@ func _process(_delta: float) -> void:
 						$"../Dropping".set_text(tr("_GIVE_AWAY"))
 						end_step = true
 						return
-					Table.set_secur(select_card, i)
+					Global.table.set_secur(select_card, i)
 					select_card.new_pos = Vector2(i.position.x+10, i.position.y+20)
 					select_card.rotate_data = [true, 0]
 	elif Global.game_state != Global.GameStates.DISTRIBUTION:
-		if Table.get_child_count() == 0: _shot()
+		if Global.table.get_child_count() == 0: _shot()
 		else:
 			var end: bool = true
-			for i in Table.get_children():
+			for i in Global.table.get_children():
 				if i.attack and not i.security_card:
 					end = false
 					break
@@ -48,6 +46,6 @@ func find_min(card: Node) -> Node:
 # Ход компьютера
 func _shot() -> void:
 	if get_child_count() == 0 or get_child(0) == null: return
-	get_child(0).reparent(Table)
-	Table.get_child(0).new_pos = Vector2(100 + randi() % 874, 130)
-	Table.get_child(0).show_hide()
+	get_child(0).reparent(Global.table)
+	Global.table.get_child(0).new_pos = Vector2(100 + randi() % 874, 130)
+	Global.table.get_child(0).show_hide()

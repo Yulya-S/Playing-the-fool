@@ -1,6 +1,4 @@
 extends Hand
-# Путь к объекту в сцене
-@onready var Table = $"../Table"
 # Переменные
 var hov_unhov: HovUnhov = HovUnhov.new() # Карты в наведении
 var clicked: int = -1 # Карта на которую нажали
@@ -18,9 +16,9 @@ func _input(event: InputEvent) -> void:
 		get_child(clicked).mouse_treatments(true)
 	elif event.is_action_released("click") and clicked != -1 and get_child(clicked) != null:
 		get_child(clicked).mouse_treatments(false)
-		if not Table.add_card(get_child(clicked)): get_child(clicked).position = get_child(clicked).new_pos
+		if not Global.table.add_card(get_child(clicked)): get_child(clicked).position = get_child(clicked).new_pos
 		else:
-			Table.get_child(-1).start_anim("growth", true)
+			Global.table.get_child(-1).start_anim("growth", true)
 			_map_shift()
 		hov_unhov.array_filter(func(item): return item <= clicked and item < get_child_count())
 		clicked = -1
