@@ -1,5 +1,5 @@
 extends Control
-# Переменная
+# Переменные
 var zone_hovered: bool = false # Определение курсора мыши в зоне стола
 # Данные карт
 var card_prices: Array = [] # Значения карт на столе
