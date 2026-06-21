@@ -1,8 +1,6 @@
 extends Node2D
 # Путь к объекту в сцене
 @onready var CardAnimation = $Animation
-# Переменная
-var file: Resource = load("res://scenes/fragments/card.tscn") # Путь к карточными пакам
 
 # Создание сцены
 func _ready() -> void:
@@ -17,7 +15,7 @@ func _ready() -> void:
 
 # Таймер для анимации
 func _on_timer_timeout() -> void:
-	Global.add_obj(CardAnimation, file)
+	Global.add_obj(CardAnimation, Global.card_scene)
 	CardAnimation.get_child(-1).position = Vector2(randi_range(50, 1100), randi_range(50, 550))
 	CardAnimation.get_child(-1).set_new_frame(randi() % 36)
 	CardAnimation.get_child(-1).start_anim("fall")

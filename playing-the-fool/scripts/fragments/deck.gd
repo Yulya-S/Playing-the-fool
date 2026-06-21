@@ -1,6 +1,5 @@
 extends Node2D
-# Пути к объектам в сцене
-@onready var DeckTimer = $Timer
+# Путь к объекту в сцене
 @onready var Cards = $Cards
 # Участники игры
 @onready var Player = $"../Hand"
@@ -10,12 +9,11 @@ var user_idx: bool = true # Порядок передачи карты
 
 # Создание сцены
 func _ready() -> void:
-	var card: Resource = load("res://scenes/fragments/card.tscn") # Путь к сцене карты
 	Global.deck = self
 	# Создание и перемешивание калоды
 	var card_array: Array = Array(range(0, 36))
 	while len(card_array) > 0:
-		Global.add_obj(Cards, card)
+		Global.add_obj(Cards, Global.card_scene)
 		Cards.get_child(-1).set_value(card_array.pop_at(randi() % len(card_array)))
 		Cards.get_child(-1).position.x += (36 - len(card_array)) * 0.5
 		Cards.get_child(-1).position.y -= (36 - len(card_array)) * 0.5

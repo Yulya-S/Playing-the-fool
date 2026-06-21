@@ -1,6 +1,8 @@
 extends Node
 # Перечисление
 enum GameStates {PLAY, DISTRIBUTION} # Состояния игры
+# Путь к сцене карт
+var card_scene: Resource = load("res://scenes/fragments/card.tscn")
 # Переменные для игры
 var game_state: GameStates = GameStates.DISTRIBUTION # Текущий этап игры
 var player: bool = false # Кому принадлежит текущий ход
@@ -8,7 +10,7 @@ var player: bool = false # Кому принадлежит текущий ход
 var main = null # Главная сцена
 var deck = null # Колода
 
-# Переменная
+# Переменные файлов
 var config: Dictionary = _empty_conf() # Данные конфигураций
 var user_path: String = "user://data/" # Директория хранения данных конфигурации
 var conf_file_path: String = user_path + "conf.json" # Путь к файлу конфигураций
