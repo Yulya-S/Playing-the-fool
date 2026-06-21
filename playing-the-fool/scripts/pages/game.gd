@@ -15,7 +15,7 @@ func set_stage(state: Global.GameStates) -> void:
 	Global.game_state = state
 	if state == Global.GameStates.PLAY:
 		$Deck/Timer.stop()
-		Dropping.set_text(tr(["_ATTACK", "_PROTECT"][int(Global.player)]))
+		$Dropping.set_text(tr(["_ATTACK", "_PROTECT"][int(Global.player)]))
 	else: $Deck/Timer.start()
 	$Table.card_prices = []
 

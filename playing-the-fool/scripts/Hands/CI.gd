@@ -14,6 +14,7 @@ func _process(_delta: float) -> void:
 					var select_card: Node = find_min(i)
 					if select_card == null:
 						$"../CISay/AnimationPlayer".play("show_CISay")
+						$"../Dropping".set_text(tr("_GIVE_AWAY"))
 						end_step = true
 						return
 					Table.set_secur(select_card, i)
