@@ -7,8 +7,9 @@ func _ready() -> void: set_stage(Global.GameStates.DISTRIBUTION)
 
 # Завершение игры
 func _process(_delta: float) -> void:
+	if $GameOverWindow.visible: return
 	if Global.deck.card_count() == 0 and Global.table.get_child_count() == 0 and ($Hand.empty() or $Computer.empty()):
-		_on_window_button_down()
+		$GameOverWindow.start_anim($Hand.empty(), $Computer.empty())
 
 # Изменение текущего состояния игры
 func set_stage(state: Global.GameStates) -> void:

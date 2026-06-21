@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://yk6gbargmxh5"]
+[gd_scene load_steps=26 format=3 uid="uid://yk6gbargmxh5"]
 
 [ext_resource type="Script" uid="uid://b3qqbfont2jp2" path="res://scripts/fragments/deck.gd" id="1_773x0"]
 [ext_resource type="Script" uid="uid://ij3ltfidj7l8" path="res://scripts/pages/game.gd" id="1_qlvyt"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://lfe3evc0ov1u" path="res://scripts/Hands/Player.gd" id="6_jl74o"]
 [ext_resource type="Script" uid="uid://cv3y2qsx48bj7" path="res://scripts/fragments/first_move_determination.gd" id="6_ut5xk"]
 [ext_resource type="Texture2D" uid="uid://cig8bof0nebh1" path="res://data/img/icons/arrow.png" id="7_hm6wi"]
+[ext_resource type="Script" uid="uid://ddigp2gfvv7r5" path="res://scripts/fragments/game_over_window.gd" id="9_2tgxu"]
 
 [sub_resource type="Animation" id="Animation_2tgxu"]
 length = 0.001
@@ -134,21 +135,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_jl74o"]
-resource_name = "hide"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("..:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_ut5xk"]
 resource_name = "show"
 length = 2.0
@@ -165,11 +151,87 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_jl74o"]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jl74o"]
 _data = {
 &"RESET": SubResource("Animation_kt16h"),
 &"hide": SubResource("Animation_jl74o"),
 &"show": SubResource("Animation_ut5xk")
+}
+
+[sub_resource type="Animation" id="Animation_ol4lx"]
+resource_name = "show"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cr0dk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dmoi7"]
+_data = {
+&"RESET": SubResource("Animation_cr0dk"),
+&"show": SubResource("Animation_ol4lx")
 }
 
 [node name="Game" type="Control"]
@@ -305,9 +367,9 @@ script = ExtResource("6_ut5xk")
 [node name="Result" type="Label" parent="FirstMoveDetermination"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_top = 439.0
+offset_top = 442.0
 offset_right = 1152.0
-offset_bottom = 508.0
+offset_bottom = 511.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.994273, 0, 0.201686, 1)
 theme_override_constants/outline_size = 20
@@ -332,6 +394,54 @@ libraries = {
 &"": SubResource("AnimationLibrary_jl74o")
 }
 
+[node name="GameOverWindow" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.34902)
+script = ExtResource("9_2tgxu")
+
+[node name="Label" type="Label" parent="GameOverWindow"]
+layout_mode = 0
+offset_top = 166.0
+offset_right = 1152.0
+offset_bottom = 235.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "_GAME_OVER"
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Result" type="Label" parent="GameOverWindow"]
+layout_mode = 0
+offset_top = 263.0
+offset_right = 1152.0
+offset_bottom = 332.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "Победил"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameOverWindow/Result"]
+libraries = {
+&"": SubResource("AnimationLibrary_dmoi7")
+}
+
+[node name="NewGame" type="Button" parent="GameOverWindow"]
+layout_mode = 0
+offset_left = 291.0
+offset_top = 408.0
+offset_right = 894.0
+offset_bottom = 471.0
+theme_override_font_sizes/font_size = 40
+text = "Новая игра"
+
 [node name="Back" type="Button" parent="."]
 layout_mode = 0
 offset_left = 20.0
@@ -346,4 +456,5 @@ icon = ExtResource("3_773x0")
 [connection signal="mouse_exited" from="Table" to="Table" method="_on_mouse" binds= [false]]
 [connection signal="button_down" from="Dropping" to="." method="_on_dropping_button_down"]
 [connection signal="animation_finished" from="FirstMoveDetermination/Result/AnimationPlayer" to="FirstMoveDetermination/Arrow" method="_on_animation_player_animation_finished"]
+[connection signal="button_down" from="GameOverWindow/NewGame" to="GameOverWindow" method="_on_new_game_button_down"]
 [connection signal="button_down" from="Back" to="." method="_on_window_button_down"]
