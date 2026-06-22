@@ -1,6 +1,7 @@
 extends GameWindow
-# Переменная
+# Переменные
 var steps: int = 0 # Счетчик ходов для статистики
+var first_clear: bool = false # Была ли объявленна первая "бита"
 
 # Старт раздачи карт
 func _ready() -> void: set_stage(Global.GameStates.DISTRIBUTION)
@@ -27,6 +28,7 @@ func next_step() -> void:
 	for i in Global.table.get_children():
 		i.reparent($Trash)
 		i.new_pos.x = $Trash.position.x
+	first_clear = true
 	Global.player = not Global.player
 
 # Обработка нажатия на кнопку завершения хода игрока
