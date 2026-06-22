@@ -1,7 +1,8 @@
 id	en	ru
 _LABEL	Playing «The Fool»	Игра в «Дурака»
 _STATISTICS	Statistics	Статистика
-_GAME_OVER	Thanks for playing! 	Спасибо за игру!
+_NEW_GAME	New game 	Новая игра
+_GAME_OVER	Thanks for playing!	Спасибо за игру!
 _WINNER	Winner	Победитель
 _MOVES	Number of moves	Количество ходов
 _COUNT	Number of cards	Количество карт

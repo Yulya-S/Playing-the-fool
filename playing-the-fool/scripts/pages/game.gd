@@ -22,10 +22,10 @@ func set_stage(state: Global.GameStates) -> void:
 
 # Завершение хода и начало следующего
 func next_step() -> void:
-	Global.player = not Global.player
 	for i in Global.table.get_children():
 		i.reparent($Trash)
 		i.new_pos.x = $Trash.position.x
+	Global.player = not Global.player
 
 # Обработка нажатия на кнопку завершения хода игрока
 func _on_dropping_button_down() -> void:

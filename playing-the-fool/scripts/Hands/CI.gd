@@ -20,15 +20,14 @@ func _process(_delta: float) -> void:
 					select_card.rotate_data = [true, 0]
 	elif Global.game_state != Global.GameStates.DISTRIBUTION:
 		if Global.table.get_child_count() == 0: _shot()
-		else:
-			var end: bool = true
-			for i in Global.table.get_children():
-				if i.attack and not i.security_card:
-					end = false
-					break
-			if end:
-				$"..".set_stage(Global.GameStates.DISTRIBUTION)
-				$"..".next_step()
+		var end: bool = true
+		for i in Global.table.get_children():
+			if i.attack and not i.security_card:
+				end = false
+				break
+		if end:
+			$"..".set_stage(Global.GameStates.DISTRIBUTION)
+			$"..".next_step()
 	_map_shift()
 
 # Очистка состояний по окончанию хода
