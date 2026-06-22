@@ -16,7 +16,9 @@ func _process(_delta: float) -> void:
 func set_stage(state: Global.GameStates) -> void:
 	Global.game_state = state
 	Global.deck.get_child(-1).paused = state == Global.GameStates.PLAY
-	if state == Global.GameStates.PLAY: $Dropping.set_text(tr(["_ATTACK", "_PROTECT"][int(Global.player)]))
+	if state == Global.GameStates.PLAY:
+		$Dropping.set_text(tr(["_ATTACK", "_PROTECT"][int(Global.player)]))
+		$Hand._card_sort()
 	else: steps += 1
 	Global.table.card_prices = []
 

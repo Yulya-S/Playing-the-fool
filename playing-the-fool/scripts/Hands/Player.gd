@@ -9,6 +9,14 @@ func _process(_delta: float) -> void:
 	elif hov_unhov.count() and hov_unhov.get_card(self) != null: 
 		hov_unhov.get_card(self).position.y = height - 60
 
+# Сортировка карт в руке игрока
+func _card_sort() -> void:
+	var last_suit_idx: Array = [0, 0, 0, 0]
+	for i in get_children():
+		move_child(i, last_suit_idx[i.suit])
+		for l in range(4): if l <= i.suit: last_suit_idx[l] += 1
+	_map_shift()
+
 # Обработка нажатия на карту
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("click") and hov_unhov.count():
