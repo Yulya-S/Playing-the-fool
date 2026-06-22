@@ -14,5 +14,4 @@ func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	Global.save_stats($"..".steps, winner, $"../Hand".get_child_count())
 
 # Обработка нажатия кнопки новой игры
-func _on_new_game_button_down() -> void:
-	$".."._on_window_button_down("game")
+func _on_new_game_button_down() -> void: $".."._on_window_button_down("game")
