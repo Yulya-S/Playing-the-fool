@@ -11,9 +11,10 @@ func _process(_delta: float) -> void:
 
 # Сортировка карт в руке игрока
 func _card_sort() -> void:
-	for i in range(get_child_count() - 1, -1, -1): for l in range(i, -1, -1):
-		if get_child(i).price < get_child(l).price:
-			move_child(get_child(l), i)
+	for i in range(get_child_count() - 1, -1, -1):
+		for l in range(i, -1, -1):
+			if get_child(i).price < get_child(l).price:
+				move_child(get_child(l), i)
 	_map_shift()
 
 # Обработка нажатия на карту

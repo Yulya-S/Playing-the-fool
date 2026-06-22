@@ -12,7 +12,8 @@ func _ready() -> void: Global.table = self
 func add_card(card: Node) -> bool:
 	if not $"..".first_clear:
 		var attack_card_count: int = 0
-		for i in get_children(): if i.attack: attack_card_count += 1
+		for i in get_children():
+			if i.attack: attack_card_count += 1
 		if attack_card_count >= 6: return false
 	if not Global.player and zone_hovered and (len(card_prices) == 0 or card.price in card_prices):
 		return _reparent(card)
