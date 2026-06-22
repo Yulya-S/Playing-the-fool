@@ -456,5 +456,6 @@ icon = ExtResource("3_773x0")
 [connection signal="mouse_exited" from="Table" to="Table" method="_on_mouse" binds= [false]]
 [connection signal="button_down" from="Dropping" to="." method="_on_dropping_button_down"]
 [connection signal="animation_finished" from="FirstMoveDetermination/Result/AnimationPlayer" to="FirstMoveDetermination/Arrow" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="GameOverWindow/Result/AnimationPlayer" to="GameOverWindow" method="_on_animation_player_animation_finished"]
 [connection signal="button_down" from="GameOverWindow/NewGame" to="GameOverWindow" method="_on_new_game_button_down"]
 [connection signal="button_down" from="Back" to="." method="_on_window_button_down"]
