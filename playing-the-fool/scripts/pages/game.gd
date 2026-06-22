@@ -7,6 +7,7 @@ func _ready() -> void: set_stage(Global.GameStates.DISTRIBUTION)
 
 # Завершение игры
 func _process(_delta: float) -> void:
+	for i in $Trash.get_children(): if $Trash.position.x - i.position.x < 20: Global.delete_child($Trash, i)
 	if $GameOverWindow.visible: return
 	if Global.deck.card_count() == 0 and Global.table.get_child_count() == 0 and ($Hand.empty() or $Computer.empty()):
 		$GameOverWindow.start_anim($Hand.empty(), $Computer.empty())
@@ -21,8 +22,10 @@ func set_stage(state: Global.GameStates) -> void:
 
 # Завершение хода и начало следующего
 func next_step() -> void:
-	for i in Global.table.get_children(): Global.delete_child(Global.table, i)
 	Global.player = not Global.player
+	for i in Global.table.get_children():
+		i.reparent($Trash)
+		i.new_pos.x = $Trash.position.x
 
 # Обработка нажатия на кнопку завершения хода игрока
 func _on_dropping_button_down() -> void:
