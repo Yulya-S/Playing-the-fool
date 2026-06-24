@@ -6,6 +6,9 @@ class_name Hand
 @export var max_weight: float = 952 # Ширина
 @export var show_card: bool = true # Будет ли показываться цена карты
 
+# Сохранение пути к сцене
+func _ready() -> void: Global.PL = self
+
 # Проверка что в руке карт больше 6
 func cards_enough() -> bool: return get_child_count() >= 6
 

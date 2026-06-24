@@ -1,9 +1,6 @@
 extends Node2D
 # Путь к объекту в сцене
 @onready var Cards = $Cards
-# Участники игры
-@onready var Player = $"../Hand"
-@onready var CI = $"../Computer"
 # Переменная
 var user_idx: bool = true # Порядок передачи карты
 
@@ -26,7 +23,7 @@ func _process(_delta: float) -> void:
 			get_parent().set_stage(Global.GameStates.PLAY)
 
 # Проверка что количество карт у всех игроков >= 6
-func _cards_enough() -> bool: return Player.cards_enough() and CI.cards_enough()
+func _cards_enough() -> bool: return Global.PL.cards_enough() and Global.CI.cards_enough()
 
 # Получение количества оставшихся в колоде карт
 func card_count() -> int: return Cards.get_child_count()
@@ -35,8 +32,8 @@ func card_count() -> int: return Cards.get_child_count()
 func _on_timer_timeout() -> void:
 	if Cards.get_child_count() <= 24: user_idx = Global.player
 	if _cards_enough(): return
-	elif CI.cards_enough(): user_idx = true
-	elif Player.cards_enough(): user_idx = false
-	(Player if user_idx else CI).add_card()
+	elif Global.CI.cards_enough(): user_idx = true
+	elif Global.PL.cards_enough(): user_idx = false
+	(Global.PL if user_idx else Global.CI).add_card()
 	user_idx = not user_idx
 	$CardsCount.set_text(str(Cards.get_child_count()))

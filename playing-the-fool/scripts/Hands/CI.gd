@@ -1,4 +1,9 @@
 extends Hand
+# Путь к объекту в сцене
+@onready var Say = $"../CISay"
+
+# Сохранение пути к сцене
+func _ready() -> void: Global.CI = self
 
 # Отображение количества карт и смещение их к центру
 func _process(_delta: float) -> void:
@@ -7,13 +12,13 @@ func _process(_delta: float) -> void:
 
 # Процесс защиты
 func secure() -> void:
-	if not $"../CISay".visible and Global.table.get_child_count() > 0:
+	if not Say.visible and Global.table.get_child_count() > 0:
 		for i in Global.table.get_children():
 			if i.state == Global.CardStates.ATTACK:
 				var select_card: Node = find_min(i)
 				if select_card == null:
 					$"../CISay/AnimationPlayer".play("show_CISay")
-					$"../Dropping".set_text(tr("_GIVE_AWAY"))
+					Global.game.Drop.set_text(tr("_GIVE_AWAY"))
 					return
 				Global.table.set_secur(select_card, i)
 				select_card.new_pos = Vector2(i.position.x+10, i.position.y+20)
@@ -22,7 +27,7 @@ func secure() -> void:
 # Очистка состояний по окончанию хода
 func taking_cards() -> void:
 	super.taking_cards()
-	$"../CISay".visible = false
+	Say.visible = false
 
 # Поиск карты с наименьшей ценой в руке компьютера
 func find_min(card: Node) -> Node:
@@ -36,8 +41,8 @@ func find_min(card: Node) -> Node:
 # Завершение атаки игрока
 func fight() -> void:
 	for i in Global.table.get_children(): if i.state == Global.CardStates.ATTACK: return
-	$"..".set_stage(Global.GameStates.DISTRIBUTION)
-	$"..".next_step()
+	Global.game.set_stage(Global.GameStates.DISTRIBUTION)
+	Global.game.next_step()
 
 # Ход компьютера
 func attack() -> void:

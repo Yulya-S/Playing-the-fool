@@ -1,15 +1,16 @@
 extends GameWindow
 # Пути к объектам в сцене
 @onready var Trash = $Trash
-@onready var PL = $Hand
-@onready var CI = $Computer
+@onready var Drop = $Dropping
 
 # Переменные
 var steps: int = 0 # Счетчик ходов для статистики
 var first_clear: bool = false # Была ли объявленна первая "бита"
 
 # Старт раздачи карт
-func _ready() -> void: set_stage(Global.GameStates.DISTRIBUTION)
+func _ready() -> void:
+	Global.game = self
+	set_stage(Global.GameStates.DISTRIBUTION)
 
 # Очистка стола
 func _process(_delta: float) -> void:
@@ -20,9 +21,9 @@ func set_stage(state: Global.GameStates) -> void:
 	Global.game_state = state
 	Global.deck.get_child(-1).paused = state == Global.GameStates.PLAY
 	if state == Global.GameStates.PLAY:
-		$Dropping.set_text(tr(["_ATTACK", "_PROTECT"][int(Global.player)]))
-		PL.card_sort()
-		if Global.player: CI.attack()
+		Drop.set_text(tr(["_ATTACK", "_PROTECT"][int(Global.player)]))
+		Global.PL.card_sort()
+		if Global.player: Global.CI.attack()
 	else: steps += 1
 	Global.table.card_prices = []
 
@@ -37,7 +38,7 @@ func next_step() -> void:
 # Обработка нажатия на кнопку завершения хода игрока
 func _on_dropping_button_down() -> void:
 	if Global.table.get_child_count() == 0 or Global.game_state != Global.GameStates.PLAY: return
-	if Global.player: PL.taking_cards()
-	elif $CISay.visible: CI.taking_cards()
+	if Global.player: Global.PL.taking_cards()
+	elif Global.CI.Say.visible: Global.CI.taking_cards()
 	else: next_step()
 	set_stage(Global.GameStates.DISTRIBUTION)
