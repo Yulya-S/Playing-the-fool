@@ -18,13 +18,13 @@ func add_card(card: Node) -> bool:
 	if not Global.player and zone_hovered and (len(card_prices) == 0 or card.price in card_prices):
 		_reparent(card)
 		card.start_anim("growth", true)
-		$"../Computer"._fight()
+		$"../Computer".secure()
 		return true
 	elif Global.player and hov_unhov.count() and card.mt(get_child(hov_unhov.max_hov())):
 		set_secur(card, get_child(hov_unhov.max_hov()))
 		card.start_anim("growth", true)
-		#$"../Computer"._shot()
-		$"../Computer".end_fight()
+		#$"../Computer".attack()
+		$"../Computer".fight()
 		return true
 	return false
 

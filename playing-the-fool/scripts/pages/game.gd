@@ -23,7 +23,7 @@ func set_stage(state: Global.GameStates) -> void:
 	if state == Global.GameStates.PLAY:
 		$Dropping.set_text(tr(["_ATTACK", "_PROTECT"][int(Global.player)]))
 		$Hand._card_sort()
-		if Global.player: $Computer._shot()
+		if Global.player: $Computer.attack()
 	else: steps += 1
 	Global.table.card_prices = []
 
