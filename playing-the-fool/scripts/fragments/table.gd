@@ -1,4 +1,6 @@
 extends Control
+# Путь к объекту в сцене
+@onready var CI = $"../Computer"
 # Переменные
 var zone_hovered: bool = false # Определение курсора мыши в зоне стола
 # Данные карт
@@ -10,23 +12,27 @@ func _ready() -> void: Global.table = self
 
 # Сброс карты на стол, во время хода игрока
 func add_card(card: Node) -> bool:
+	# Проверка что это не первый сброс в 6 карт
 	if not $"..".first_clear and get_attack_card_count() >= 6: return false
-	var secure_cards_count: int = 0
-	for i in get_children(): if i.state == Global.CardStates.SECURE: secure_cards_count += 1
-	var current_player: Node = $"../Computer" if not Global.player else $"../Hand"
-	if current_player.get_child_count() <= get_attack_card_count() - secure_cards_count: return false
+	# Проверка что количество карт не больше чем может побить противник
+	if not Global.player:
+		var secure_cards_count: int = 0
+		for i in get_children():
+			if i.state == Global.CardStates.SECURE: secure_cards_count += 1
+		var current_player: Node = CI if not Global.player else $"../Hand"
+		if current_player.get_child_count() <= get_attack_card_count() - secure_cards_count:
+			return false
+	# Ход игрока
 	if not Global.player and zone_hovered and (len(card_prices) == 0 or card.price in card_prices):
 		_reparent(card)
-		card.start_anim("growth", true)
-		$"../Computer".secure()
-		return true
+		CI.secure()
 	elif Global.player and hov_unhov.count() and card.mt(get_child(hov_unhov.max_hov())):
 		set_secur(card, get_child(hov_unhov.max_hov()))
-		card.start_anim("growth", true)
-		#$"../Computer".attack()
-		$"../Computer".fight()
-		return true
-	return false
+		#CI.attack()
+		CI.fight()
+	else: return false
+	card.start_anim("growth", true)
+	return true
 
 # Получение количества защитных карт
 func get_attack_card_count() -> int:
