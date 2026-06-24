@@ -1,6 +1,7 @@
 extends Node
 # Перечисление
 enum GameStates {PLAY, DISTRIBUTION} # Состояния игры
+enum CardStates {ATTACK, SECURE, DEFEATED} # Состояния игры
 # Путь к сцене карт
 var card_scene: Resource = load("res://scenes/fragments/card.tscn")
 # Переменные для игры

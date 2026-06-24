@@ -10,9 +10,8 @@ var trump: bool = false # Метка козырности
 # Переменные для хранения данных для плавного движения карты
 var rotate_data: Array = [false, 0] # Поворот
 var new_pos: Vector2 = Vector2(0, 0) # Перемещение
-# Переменне для проверки "Покрытия" карты
-var attack: bool = true # Атакующая ли карта
-var security_card: bool = false # Есть ли карта "Победитель"
+# Состояния карты для проверки на столе
+var state: Global.CardStates = Global.CardStates.ATTACK
 
 # Применение карточного пака
 func _ready() -> void: animation = str(int(Global.config.card_pack))

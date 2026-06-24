@@ -5,7 +5,7 @@ var hovered_cards: Array = [] # Карты под курсором мыши
 
 # Добавление элемента в список
 func add(obj) -> void:
-	if obj.security_card or not obj.attack: return
+	if obj.state != Global.CardStates.ATTACK: return
 	hovered_cards.append(obj.get_index())
 
 # Получение карты у родителя
