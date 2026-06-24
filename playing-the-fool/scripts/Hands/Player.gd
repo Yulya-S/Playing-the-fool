@@ -16,9 +16,8 @@ func _update_pos() -> void:
 
 # Сортировка карт в руке игрока
 func card_sort() -> void:
-	for i in range(get_child_count() - 1, -1, -1):
-		for l in range(i, -1, -1):
-			if get_child(i).price < get_child(l).price: move_child(get_child(l), i)
+	for i in range(get_child_count() - 1, -1, -1): for l in range(i, -1, -1):
+		if get_child(i).price < get_child(l).price: move_child(get_child(l), i)
 	_update_pos()
 
 # Обработка нажатия на карту

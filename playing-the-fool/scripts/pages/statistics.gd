@@ -19,3 +19,8 @@ func _process(_delta: float) -> void:
 		for i in LinesContainer.get_child(-1).get_children():
 			if i.name.to_lower() in value.keys():
 				i.set_text(Global.user_name(value[i.name.to_lower()]) if i.name == "Winner" else str(int(value[i.name.to_lower()])))
+
+# Обработка нажатия кнопки очистки статистики
+func _on_clear_button_down() -> void:
+	Global.store_json(Global.stats_file_path, [])
+	_on_window_button_down("statistics")

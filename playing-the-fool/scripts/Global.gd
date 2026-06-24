@@ -24,7 +24,7 @@ var SECRET_KEY: String = "yunabi_save_key86549" # Ключь для шифров
 
 # Работа с файлами
 # Сохранение данных в файл
-func _store_json(file_path: String, data: Variant) -> void:
+func store_json(file_path: String, data: Variant) -> void:
 	var file = FileAccess.open_encrypted_with_pass(file_path, FileAccess.WRITE, SECRET_KEY)
 	var json_string = JSON.stringify(data)
 	file.store_string(json_string)
@@ -47,13 +47,13 @@ func create_config() -> void:
 	save_config()
 
 # Сохранение данных конфигураций в файл
-func save_config() -> void: _store_json(conf_file_path, config)
+func save_config() -> void: store_json(conf_file_path, config)
 
 # Сохранение данных статистики в файл
 func save_stats(moves: int, winner: int, cards_count: int) -> void:
 	var data: Array = read_file(stats_file_path)
 	data.append({"moves": moves, "winner": winner, "cards_count": cards_count})
-	_store_json(stats_file_path, data)
+	store_json(stats_file_path, data)
 
 # Пустой словарь конфигурации
 func _empty_conf() -> Dictionary: return {"background_color": Color.DARK_GREEN.to_html(), "card_pack": 0, "lang": "ru"}

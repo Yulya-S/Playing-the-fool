@@ -270,6 +270,7 @@ theme_override_font_sizes/font_size = 40
 text = "_CIMESSAGE"
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CISay"]
 libraries = {
@@ -332,6 +333,7 @@ offset_top = 575.0
 offset_right = 1144.0
 offset_bottom = 638.0
 theme_override_font_sizes/font_size = 40
+text_overrun_behavior = 3
 
 [node name="FirstMoveDetermination" type="ColorRect" parent="."]
 layout_mode = 0
@@ -376,6 +378,7 @@ theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 50
 text = "_FIRST"
 horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="Label" type="Label" parent="FirstMoveDetermination/Result"]
 layout_mode = 0
@@ -426,6 +429,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameOverWindow/Result"]
 libraries = {

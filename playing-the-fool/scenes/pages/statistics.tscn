@@ -44,7 +44,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Button" type="Button" parent="."]
+[node name="Back" type="Button" parent="."]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0
@@ -53,4 +53,15 @@ offset_bottom = 148.0
 scale = Vector2(0.6, 0.6)
 icon = ExtResource("3_qr3t7")
 
-[connection signal="button_down" from="Button" to="." method="_on_window_button_down"]
+[node name="Clear" type="Button" parent="."]
+layout_mode = 0
+offset_left = 884.0
+offset_top = 565.0
+offset_right = 1132.0
+offset_bottom = 628.0
+theme_override_font_sizes/font_size = 40
+text = "_CLEAR"
+text_overrun_behavior = 3
+
+[connection signal="button_down" from="Back" to="." method="_on_window_button_down"]
+[connection signal="button_down" from="Clear" to="." method="_on_clear_button_down"]
