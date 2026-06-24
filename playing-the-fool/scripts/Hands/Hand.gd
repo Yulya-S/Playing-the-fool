@@ -32,6 +32,7 @@ func _update_card_pos() -> void:
 func taking_cards() -> void:
 	for i in Global.table.get_children():
 		i.reparent(self)
+		i.state = Global.CardStates.ATTACK
 		i.rotate_data = [true, 0]
 		_update_card_pos()
 
