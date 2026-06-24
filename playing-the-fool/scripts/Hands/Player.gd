@@ -25,8 +25,6 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_released("click") and clicked != -1 and get_child(clicked) != null:
 		get_child(clicked).mouse_treatments(false)
 		if not Global.table.add_card(get_child(clicked)): get_child(clicked).position = get_child(clicked).new_pos
-		else:
-			Global.table.get_child(-1).start_anim("growth", true)
-			_map_shift()
+		else: _map_shift()
 		hov_unhov.array_filter(func(item): return item <= clicked and item < get_child_count())
 		clicked = -1
