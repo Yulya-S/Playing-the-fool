@@ -26,11 +26,19 @@ func add_card(card: Node) -> bool:
 		Global.CI.secure()
 	elif Global.player and hov_unhov.count() and card.mt(get_child(hov_unhov.max_hov())):
 		set_secur(card, get_child(hov_unhov.max_hov()))
-		#Global.CI.attack()
+		Global.CI.attack()
 		Global.CI.fight()
 	else: return false
+	hov_unhov.hovered_cards = []
 	card.start_anim("growth", true)
 	return true
+
+# Добавление карты из руки компьютера
+func add_CI_card(card: Node) -> void:
+	if card.price not in card_prices: card_prices.append(card.price)
+	card.reparent(self)
+	get_child(-1).new_pos = Vector2(100 + get_attack_card_count() * 150, 130)
+	get_child(-1).show_hide()
 
 # Получение количества защитных карт
 func get_attack_card_count() -> int:
