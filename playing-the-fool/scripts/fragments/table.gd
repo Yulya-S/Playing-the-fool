@@ -26,6 +26,7 @@ func add_card(card: Node) -> bool:
 		Global.CI.secure()
 	elif Global.player and hov_unhov.count() and card.mt(get_child(hov_unhov.max_hov())):
 		set_secur(card, get_child(hov_unhov.max_hov()))
+		card.new_pos[1] = get_child(hov_unhov.max_hov()).position.y + 20
 		Global.CI.attack()
 		Global.CI.fight()
 	else: return false
@@ -57,8 +58,8 @@ func _reparent(card: Card) -> void:
 	card.show_hide()
 	if card.price not in card_prices: card_prices.append(card.price)
 	card.reparent(self)
-	get_child(-1).rotate_data = [true, randf_range(-0.2, 0.2)]
-	get_child(-1).new_pos = get_child(-1).position
+	card.rotate_data = [true, randf_range(-0.2, 0.2)]
+	card.new_pos = get_child(-1).position
 
 # Изменение состояния наведения курсора мыши на зону стола
 func _on_mouse(hovered: bool) -> void: zone_hovered = hovered
