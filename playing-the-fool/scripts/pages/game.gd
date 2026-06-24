@@ -23,6 +23,7 @@ func set_stage(state: Global.GameStates) -> void:
 	if state == Global.GameStates.PLAY:
 		Drop.set_text(tr(["_ATTACK", "_PROTECT"][int(Global.player)]))
 		Global.PL.card_sort()
+		await get_tree().create_timer(0.8).timeout
 		if Global.player: Global.CI.attack()
 	else: steps += 1
 	Global.table.card_prices = []
