@@ -21,7 +21,7 @@ func set_stage(state: Global.GameStates) -> void:
 	Global.deck.get_child(-1).paused = state == Global.GameStates.PLAY
 	if state == Global.GameStates.PLAY:
 		$Dropping.set_text(tr(["_ATTACK", "_PROTECT"][int(Global.player)]))
-		PL._card_sort()
+		PL.card_sort()
 		if Global.player: CI.attack()
 	else: steps += 1
 	Global.table.card_prices = []
