@@ -306,6 +306,9 @@ position = Vector2(179, 0)
 wait_time = 0.1
 autostart = true
 
+[node name="Trash" type="Node2D" parent="."]
+position = Vector2(1176, 252)
+
 [node name="Table" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 40.0
@@ -316,8 +319,8 @@ script = ExtResource("5_hm6wi")
 
 [node name="Computer" type="Node2D" parent="."]
 script = ExtResource("5_5is8n")
-start_pos = 400.0
-max_weight = 600.0
+start_pos = 450.0
+max_weight = 550.0
 show_card = false
 
 [node name="Hand" type="Node2D" parent="."]
@@ -335,7 +338,6 @@ theme_override_font_sizes/font_size = 40
 text_overrun_behavior = 3
 
 [node name="FirstMoveDetermination" type="ColorRect" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -453,9 +455,6 @@ offset_right = 148.0
 offset_bottom = 148.0
 scale = Vector2(0.6, 0.6)
 icon = ExtResource("3_773x0")
-
-[node name="Trash" type="Node2D" parent="."]
-position = Vector2(1176, 252)
 
 [connection signal="timeout" from="Deck/Timer" to="Deck" method="_on_timer_timeout"]
 [connection signal="mouse_entered" from="Table" to="Table" method="_on_mouse" binds= [true]]

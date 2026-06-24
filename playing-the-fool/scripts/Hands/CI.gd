@@ -74,4 +74,6 @@ func attack() -> void:
 	if Global.table.get_child_count() == 0: Global.table.add_CI_card(min_card_to_attack())
 	if strategy != CIStrategy.SMALLER and Global.deck.card_count() > 8: return
 	for i in get_children():
+		if not Global.game.first_clear and Global.table.get_attack_card_count() >= 6: return
+		if Global.table.check_enemy_card_count(): return
 		if i.price in Global.table.card_prices and not i.trump: Global.table.add_CI_card(i)

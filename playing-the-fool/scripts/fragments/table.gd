@@ -13,13 +13,7 @@ func add_card(card: Node) -> bool:
 	# Проверка что это не первый сброс в 6 карт
 	if not Global.game.first_clear and get_attack_card_count() >= 6: return false
 	# Проверка что количество карт не больше чем может побить противник
-	if not Global.player:
-		var secure_cards_count: int = 0
-		for i in get_children():
-			if i.state == Global.CardStates.SECURE: secure_cards_count += 1
-		var current_player: Node = Global.CI if not Global.player else Global.PL
-		if current_player.get_child_count() <= get_attack_card_count() - secure_cards_count:
-			return false
+	if not Global.player and check_enemy_card_count(): return false
 	# Ход игрока
 	if not Global.player and zone_hovered and (len(card_prices) == 0 or card.price in card_prices):
 		_reparent(card)
@@ -38,8 +32,19 @@ func add_card(card: Node) -> bool:
 func add_CI_card(card: Node) -> void:
 	if card.price not in card_prices: card_prices.append(card.price)
 	card.reparent(self)
-	get_child(-1).new_pos = Vector2(100 + get_attack_card_count() * 150, 130)
+	get_child(-1).new_pos = Vector2(50 + get_attack_card_count() * 110, 130)
+	if 50 + get_attack_card_count() * 110 > 950:
+		get_child(-1).new_pos = Vector2(80 + (get_attack_card_count() - 8) * 110, 180)
 	get_child(-1).show_hide()
+
+# Получение количества атакующих карт и карт в руке противника
+func check_enemy_card_count() -> bool:
+	var secure_cards_count: int = 0
+	for i in get_children(): if i.state == Global.CardStates.SECURE: secure_cards_count += 1
+	var current_player: Node = Global.CI if not Global.player else Global.PL
+	if current_player.get_child_count() <= get_attack_card_count() - secure_cards_count:
+		return true
+	return false
 
 # Получение количества защитных карт
 func get_attack_card_count() -> int:
