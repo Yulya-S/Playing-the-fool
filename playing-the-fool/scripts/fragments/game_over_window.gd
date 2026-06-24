@@ -3,7 +3,7 @@ extends ColorRect
 @onready var Res = $Result
 
 # Проверка завершилась ли игра
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if visible: return
 	if Global.deck.card_count() == 0 and Global.table.get_child_count() == 0 and (Global.PL.empty() or Global.CI.empty()):
 		var values: Array = [Global.PL.empty(), Global.CI.empty()]
