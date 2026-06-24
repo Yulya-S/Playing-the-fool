@@ -41,7 +41,7 @@ func _map_shift() -> void:
 	# Получение значения шага между картами
 	var step: float = 0.0
 	if get_child_count() > 0:
-		var weight: float = 100 * (get_child_count() - 1)
+		var weight: float = 200 * (get_child_count() - 1)
 		if weight > max_weight: weight = max_weight
 		step = weight / (get_child_count())
 	# Применение новой позиции
