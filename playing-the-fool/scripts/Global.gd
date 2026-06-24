@@ -67,8 +67,7 @@ func delete_child(parent: Variant, child: Variant) -> void:
 	parent.remove_child(child)
 
 # Добавление дочернего объекта
-func add_obj(parent: Node, path: Resource) -> void:
-	parent.add_child(path.instantiate())
+func add_obj(parent: Node, path: Resource) -> void: parent.add_child(path.instantiate())
 
 # Прочие функции
 # Получение перевода имени пользователя
