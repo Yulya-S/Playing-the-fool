@@ -32,9 +32,9 @@ func add_card(card: Node) -> bool:
 func add_CI_card(card: Node) -> void:
 	if card.price not in card_prices: card_prices.append(card.price)
 	card.reparent(self)
-	get_child(-1).new_pos = Vector2(50 + get_attack_card_count() * 110, 130)
-	if 50 + get_attack_card_count() * 110 > 950:
-		get_child(-1).new_pos = Vector2(80 + (get_attack_card_count() - 8) * 110, 180)
+	get_child(-1).new_pos = Vector2(50 + get_attack_card_count() * 130, 130)
+	if get_child(-1).new_pos[0] > 950:
+		get_child(-1).new_pos = Vector2(80 + (get_attack_card_count() - 7) * 130, 180)
 	get_child(-1).show_hide()
 
 # Получение количества атакующих карт и карт в руке противника
