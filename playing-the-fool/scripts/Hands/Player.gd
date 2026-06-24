@@ -9,16 +9,12 @@ func _process(_delta: float) -> void:
 	elif hov_unhov.count() and hov_unhov.get_card(self) != null: 
 		hov_unhov.get_card(self).position.y = height - 60
 
-# Изменение позиционирования карт и сброс наведений
-func _update_pos() -> void:
-	_map_shift()
-	hov_unhov.hovered_cards = []
-
 # Сортировка карт в руке игрока
 func card_sort() -> void:
 	for i in range(get_child_count() - 1, -1, -1): for l in range(i, -1, -1):
 		if get_child(i).price < get_child(l).price: move_child(get_child(l), i)
-	_update_pos()
+	_map_shift()
+	hov_unhov.hovered_cards = []
 
 # Обработка нажатия на карту
 func _input(event: InputEvent) -> void:
@@ -27,8 +23,7 @@ func _input(event: InputEvent) -> void:
 		get_child(clicked).mouse_treatments(true)
 	elif event.is_action_released("click") and clicked != -1 and get_child(clicked) != null:
 		get_child(clicked).mouse_treatments(false)
-		if not Global.table.add_card(get_child(clicked)):
-			get_child(clicked).position = get_child(clicked).new_pos
-			hov_unhov.array_filter(func(item): return item <= clicked and item < get_child_count())
-		else: _update_pos()
+		if not Global.table.add_card(get_child(clicked)): get_child(clicked).position = get_child(clicked).new_pos
+		else: _map_shift()
+		hov_unhov.hovered_cards = []
 		clicked = -1
